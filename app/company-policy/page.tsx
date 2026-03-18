@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import Image from 'next/image'
 import { Shield, CheckCircle, ArrowLeft } from 'lucide-react'
+import Navbar from '@/components/Navbar'
 
 export const metadata: Metadata = {
   title: 'Kebijakan Perusahaan',
@@ -53,28 +53,9 @@ const policies = [
 
 export default function CompanyPolicyPage() {
   return (
-    <div className="min-h-screen bg-[#f5f3ef] font-body">
-
-      {/* Top Nav Bar */}
-      <div className="bg-navy py-4 px-6 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 group">
-          <Image
-            src="/images/BATAVIA_ASIA_PROJECT_.png"
-            alt="PT Batavia Asia Project"
-            width={536}
-            height={466}
-            className="h-[50px] w-auto object-contain"
-            priority
-          />
-        </Link>
-        <Link
-          href="/"
-          className="flex items-center gap-2 text-white/70 hover:text-gold transition-colors text-sm font-medium"
-        >
-          <ArrowLeft size={16} />
-          Kembali ke Beranda
-        </Link>
-      </div>
+    <>
+      <Navbar />
+      <div className="min-h-screen bg-[#f5f3ef] font-body pt-[80px] lg:pt-[120px]">
 
       {/* Hero Banner */}
       <div className="bg-navy text-white py-16 px-6">
@@ -171,5 +152,6 @@ export default function CompanyPolicyPage() {
         </div>
       </div>
     </div>
+    </>
   )
 }
