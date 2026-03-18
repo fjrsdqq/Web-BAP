@@ -82,10 +82,10 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/images/LOGO.png', type: 'image/png' },
+      { url: '/images/LOGO_WHITE.png', type: 'image/png' },
     ],
-    apple: '/images/LOGO.png',
-    shortcut: '/images/LOGO.png',
+    apple: '/images/LOGO_WHITE.png',
+    shortcut: '/images/LOGO_WHITE.png',
   },
   verification: {
     google: '7XxVSI1qjJIzAVSpYLk-IpU3RQ_n35dzA2tNzHMF_tg',
