@@ -57,10 +57,10 @@ export default function CompanyValuesPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#f5f3ef] font-body pt-[80px] lg:pt-[120px]">
+      <div className="min-h-screen bg-[#f5f3ef] font-body">
 
-      {/* Hero Banner */}
-      <div className="bg-navy text-white py-16 px-6">
+      {/* Hero Banner — covers transparent navbar */}
+      <div className="bg-navy text-white pt-[96px] lg:pt-[136px] pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
           <div className="inline-flex items-center gap-2 bg-gold/20 border border-gold/30 px-4 py-1.5 mb-6">
             <Star size={14} className="text-gold" />

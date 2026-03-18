@@ -192,10 +192,10 @@ export default function CompanyStructurePage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#f5f3ef] font-body pt-[80px] lg:pt-[120px]">
+      <div className="min-h-screen bg-[#f5f3ef] font-body">
 
         {/* Hero */}
-        <div className="bg-navy text-white py-14 px-6 relative overflow-hidden">
+        <div className="bg-navy text-white pt-[94px] lg:pt-[134px] pb-14 px-6 relative overflow-hidden">
           {/* decorative circles */}
           <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full border border-gold/10" />
           <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full border border-gold/10" />
