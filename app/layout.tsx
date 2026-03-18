@@ -80,6 +80,13 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
+  icons: {
+    icon: [
+      { url: '/images/LOGO.png', type: 'image/png' },
+    ],
+    apple: '/images/LOGO.png',
+    shortcut: '/images/LOGO.png',
+  },
   verification: {
     google: '7XxVSI1qjJIzAVSpYLk-IpU3RQ_n35dzA2tNzHMF_tg',
   },
