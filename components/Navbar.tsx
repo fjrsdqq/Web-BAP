@@ -14,11 +14,11 @@ const aboutItems = [
 ]
 
 const serviceItems = [
-  { label: 'Building Construction', href: '#layanan', icon: Building2 },
-  { label: 'MEP & Building Systems', href: '#layanan', icon: Zap },
-  { label: 'Finishing & Interior Works', href: '#layanan', icon: PaintBucket },
-  { label: 'Repair & Maintenance', href: '#layanan', icon: Wrench },
-  { label: 'Civil & Road Works', href: '#layanan', icon: Layers },
+  { label: 'Building Construction', href: '/?tab=building#layanan', icon: Building2 },
+  { label: 'MEP & Building Systems', href: '/?tab=mep#layanan', icon: Zap },
+  { label: 'Finishing & Interior Works', href: '/?tab=finishing#layanan', icon: PaintBucket },
+  { label: 'Repair & Maintenance', href: '/?tab=repair#layanan', icon: Wrench },
+  { label: 'Civil & Road Works', href: '/?tab=building#layanan', icon: Layers },
 ]
 
 const simpleLinks = [

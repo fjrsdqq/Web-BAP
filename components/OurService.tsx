@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Building2, Wrench, Palette, ClipboardList, Home, Zap,
@@ -218,6 +218,15 @@ const categories: Category[] = [
 
 export default function OurService() {
   const [activeTab, setActiveTab] = useState('building')
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const tab = params.get('tab')
+    const validIds = categories.map((c) => c.id)
+    if (tab && validIds.includes(tab)) {
+      setActiveTab(tab)
+    }
+  }, [])
 
   const activeCategory = categories.find((c) => c.id === activeTab)!
 
