@@ -75,7 +75,7 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link
-          href="#hero"
+          href="/"
           onClick={handleLinkClick}
           className="flex items-center group shrink-0"
         >
