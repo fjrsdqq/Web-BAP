@@ -1,59 +1,35 @@
 import { NextResponse } from 'next/server'
-import fs from 'fs'
-import path from 'path'
+import { Redis } from '@upstash/redis'
 
-// Production-safe: works on any persistent server (VPS, dedicated, etc.)
-// For Vercel/serverless: swap this with Upstash Redis or Vercel KV.
-const DATA_FILE = path.join(process.cwd(), 'data', 'visitors.json')
-const BASE_COUNT = 234 // Starting offset — real visits are added on top
+const redis = Redis.fromEnv()
 
-function readCount(): number {
-  try {
-    const raw = fs.readFileSync(DATA_FILE, 'utf-8')
-    const parsed = JSON.parse(raw)
-    return typeof parsed.count === 'number' ? parsed.count : BASE_COUNT
-  } catch {
-    return BASE_COUNT
-  }
+const KEY = 'bap:visitors'
+const BASE = 234 // starting offset
+
+async function getCount(): Promise<number> {
+  const val = await redis.get<number>(KEY)
+  return (val ?? 0) + BASE
 }
 
-function writeCount(count: number): void {
-  // Atomic write: write to temp file first, then rename — prevents corruption
-  const tmp = DATA_FILE + '.tmp'
-  try {
-    fs.writeFileSync(tmp, JSON.stringify({ count }), 'utf-8')
-    fs.renameSync(tmp, DATA_FILE)
-  } catch {
-    // Cleanup temp file if rename failed
-    try { fs.unlinkSync(tmp) } catch { /* ignore */ }
-  }
+async function increment(): Promise<number> {
+  const val = await redis.incr(KEY)
+  return val + BASE
 }
 
-// GET — return current visitor count (no increment)
+// GET — return current count
 export async function GET() {
-  const count = readCount()
+  const count = await getCount()
   return NextResponse.json(
     { count },
-    {
-      headers: {
-        'Cache-Control': 'no-store, no-cache, must-revalidate',
-        'Pragma': 'no-cache',
-      },
-    }
+    { headers: { 'Cache-Control': 'no-store' } }
   )
 }
 
-// POST — register new visit (increment), return updated count
+// POST — register new visit, return updated count
 export async function POST() {
-  const count = readCount() + 1
-  writeCount(count)
+  const count = await increment()
   return NextResponse.json(
     { count },
-    {
-      headers: {
-        'Cache-Control': 'no-store, no-cache, must-revalidate',
-        'Pragma': 'no-cache',
-      },
-    }
+    { headers: { 'Cache-Control': 'no-store' } }
   )
 }
