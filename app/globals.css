@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =====================
+   LAYER: BASE
+   ===================== */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply bg-white text-navy font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-heading;
+  }
+
+  ::selection {
+    background-color: rgba(201, 168, 76, 0.25);
+    color: #1A2B4A;
+  }
+}
+
+/* =====================
+   LAYER: COMPONENTS
+   ===================== */
+@layer components {
+  .container-section {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-padding {
+    @apply py-20 lg:py-28;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-gold hover:bg-gold-dark
+           text-white font-body font-semibold px-7 py-3.5
+           transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-gold text-gold
+           hover:bg-gold hover:text-white font-body font-semibold px-7 py-3.5
+           transition-all duration-300
+           focus:outline-none focus:ring-2 focus:ring-gold focus:ring-offset-2;
+  }
+
+  .btn-outline-white {
+    @apply inline-flex items-center gap-2 border-2 border-white text-white
+           hover:bg-white hover:text-navy font-body font-semibold px-7 py-3.5
+           transition-all duration-300;
+  }
+
+  .section-label {
+    @apply text-gold font-body font-semibold text-sm tracking-[0.2em] uppercase;
+  }
+
+  .section-title {
+    @apply font-heading text-4xl lg:text-5xl text-navy leading-tight;
+  }
+
+  .section-title-white {
+    @apply font-heading text-4xl lg:text-5xl text-white leading-tight;
+  }
+}
+
+/* =====================
+   LAYER: UTILITIES
+   ===================== */
+@layer utilities {
+  /* Pause marquee on hover */
+  .pause-on-hover:hover > div {
+    animation-play-state: paused;
+  }
+
+  /* Directional gradient overlay for hero */
+  .overlay-navy {
+    background: linear-gradient(
+      to right,
+      rgba(26, 43, 74, 0.90) 0%,
+      rgba(26, 43, 74, 0.65) 50%,
+      rgba(26, 43, 74, 0.20) 100%
+    );
+  }
+
+  .overlay-navy-center {
+    background: linear-gradient(
+      to bottom,
+      rgba(26, 43, 74, 0.30) 0%,
+      rgba(26, 43, 74, 0.75) 100%
+    );
+  }
+}
