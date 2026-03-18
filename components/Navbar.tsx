@@ -14,11 +14,11 @@ const aboutItems = [
 ]
 
 const serviceItems = [
-  { label: 'Building Construction', href: '/?tab=building#layanan', icon: Building2 },
-  { label: 'MEP & Building Systems', href: '/?tab=mep#layanan', icon: Zap },
-  { label: 'Finishing & Interior Works', href: '/?tab=finishing#layanan', icon: PaintBucket },
-  { label: 'Repair & Maintenance', href: '/?tab=repair#layanan', icon: Wrench },
-  { label: 'Civil & Road Works', href: '/?tab=building#layanan', icon: Layers },
+  { label: 'Building Construction', href: '#layanan', tab: 'building', icon: Building2 },
+  { label: 'MEP & Building Systems', href: '#layanan', tab: 'mep', icon: Zap },
+  { label: 'Finishing & Interior Works', href: '#layanan', tab: 'finishing', icon: PaintBucket },
+  { label: 'Repair & Maintenance', href: '#layanan', tab: 'repair', icon: Wrench },
+  { label: 'Civil & Road Works', href: '#layanan', tab: 'building', icon: Layers },
 ]
 
 const simpleLinks = [
@@ -61,6 +61,11 @@ export default function Navbar() {
     setMenuOpen(false)
     setActiveDropdown(null)
     setMobileExpanded(null)
+  }
+
+  const handleServiceTabClick = (tab: string) => {
+    handleLinkClick()
+    window.dispatchEvent(new CustomEvent('service-tab-change', { detail: tab }))
   }
 
 
@@ -115,6 +120,7 @@ export default function Navbar() {
             onMouseEnter={() => setActiveDropdown('services')}
             onMouseLeave={() => setActiveDropdown(null)}
             onLinkClick={handleLinkClick}
+            onItemClick={handleServiceTabClick}
           />
 
           {/* Simple links */}
@@ -186,6 +192,7 @@ export default function Navbar() {
                 expanded={mobileExpanded === 'services'}
                 onToggle={() => setMobileExpanded(mobileExpanded === 'services' ? null : 'services')}
                 onLinkClick={handleLinkClick}
+                onItemClick={handleServiceTabClick}
               />
 
               {/* Simple links */}
@@ -229,14 +236,15 @@ export default function Navbar() {
 interface DropdownItemProps {
   label: string
   id: string
-  items: { label: string; href: string; icon: React.ElementType }[]
+  items: { label: string; href: string; tab?: string; icon: React.ElementType }[]
   active: boolean
   onMouseEnter: () => void
   onMouseLeave: () => void
   onLinkClick: () => void
+  onItemClick?: (tab: string) => void
 }
 
-function DropdownItem({ label, items, active, onMouseEnter, onMouseLeave, onLinkClick }: DropdownItemProps) {
+function DropdownItem({ label, items, active, onMouseEnter, onMouseLeave, onLinkClick, onItemClick }: DropdownItemProps) {
   return (
     <div className="relative" onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <button
@@ -275,7 +283,10 @@ function DropdownItem({ label, items, active, onMouseEnter, onMouseLeave, onLink
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      onClick={onLinkClick}
+                      onClick={() => {
+                        if (item.tab && onItemClick) onItemClick(item.tab)
+                        else onLinkClick()
+                      }}
                       className="flex items-center gap-3 px-5 py-3 font-body text-sm
                                  text-white/70 hover:text-white hover:bg-white/5
                                  transition-all duration-150 group/item"
@@ -301,13 +312,14 @@ function DropdownItem({ label, items, active, onMouseEnter, onMouseLeave, onLink
 interface MobileAccordionProps {
   label: string
   id: string
-  items: { label: string; href: string; icon: React.ElementType }[]
+  items: { label: string; href: string; tab?: string; icon: React.ElementType }[]
   expanded: boolean
   onToggle: () => void
   onLinkClick: () => void
+  onItemClick?: (tab: string) => void
 }
 
-function MobileAccordion({ label, items, expanded, onToggle, onLinkClick }: MobileAccordionProps) {
+function MobileAccordion({ label, items, expanded, onToggle, onLinkClick, onItemClick }: MobileAccordionProps) {
   return (
     <div className="border-b border-white/10">
       <button
@@ -338,7 +350,10 @@ function MobileAccordion({ label, items, expanded, onToggle, onLinkClick }: Mobi
                   <li key={item.label}>
                     <Link
                       href={item.href}
-                      onClick={onLinkClick}
+                      onClick={() => {
+                        if (item.tab && onItemClick) onItemClick(item.tab)
+                        else onLinkClick()
+                      }}
                       className="flex items-center gap-3 py-2.5 font-body text-sm
                                  text-white/60 hover:text-gold transition-colors"
                     >

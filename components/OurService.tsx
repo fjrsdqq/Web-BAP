@@ -220,12 +220,13 @@ export default function OurService() {
   const [activeTab, setActiveTab] = useState('building')
 
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search)
-    const tab = params.get('tab')
-    const validIds = categories.map((c) => c.id)
-    if (tab && validIds.includes(tab)) {
-      setActiveTab(tab)
+    const handler = (e: Event) => {
+      const tab = (e as CustomEvent<string>).detail
+      const validIds = categories.map((c) => c.id)
+      if (validIds.includes(tab)) setActiveTab(tab)
     }
+    window.addEventListener('service-tab-change', handler)
+    return () => window.removeEventListener('service-tab-change', handler)
   }, [])
 
   const activeCategory = categories.find((c) => c.id === activeTab)!
