@@ -29,7 +29,7 @@ const jobs: Job[] = [
     level: 'Mid Level',
     icon: Calculator,
     tags: ['Akuntansi', 'SAP', 'Laporan Keuangan'],
-    deadline: 'Apr 30, 2025',
+    deadline: 'Apr 30, 2026',
   },
   {
     id: 2,
@@ -40,7 +40,7 @@ const jobs: Job[] = [
     level: 'Mid Level',
     icon: DollarSign,
     tags: ['Cash Flow', 'Anggaran', 'Analisis Keuangan'],
-    deadline: 'Apr 30, 2025',
+    deadline: 'Apr 30, 2026',
   },
 ]
 
