@@ -10,7 +10,7 @@ const aboutItems = [
   { label: 'Company Profile', href: '#hero', icon: FileText },
   { label: 'Company Structure', href: '#keunggulan', icon: Users },
   { label: 'Company Values', href: '#hero', icon: Star },
-  { label: 'Company Policy', href: '#hero', icon: FileText },
+  { label: 'Company Policy', href: '/company-policy', icon: FileText },
 ]
 
 const serviceItems = [
