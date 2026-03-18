@@ -101,7 +101,7 @@ export default function Keunggulan() {
                 dedication to excellence.&rdquo;
               </p>
               <footer className="font-body text-sm text-gray-400 mt-2">
-                — President Director, PT Batavia Asia Project
+                — Hammam Rhofi, President Director, PT Batavia Asia Project
               </footer>
             </motion.blockquote>
           </div>
