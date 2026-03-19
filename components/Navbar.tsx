@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, ChevronDown, Building2, Users, Star, FileText, Wrench, Zap, Layers, PaintBucket } from 'lucide-react'
 
 const aboutItems = [
-  { label: 'Company Profile', href: '#hero', icon: FileText },
+  { label: 'Company Profile', href: '/company-profile', icon: FileText },
   { label: 'Company Structure', href: '/company-structure', icon: Users },
   { label: 'Company Values', href: '/company-values', icon: Star },
   { label: 'Company Policy', href: '/company-policy', icon: FileText },
