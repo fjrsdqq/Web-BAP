@@ -456,7 +456,7 @@ export default function CompanyStructurePage() {
         <HoverPreview
           member={hovered}
           onEnter={() => {}}
-          onLeave={() => {}}
+          onLeave={closePreview}
           onClick={() => { closePreview(); setSelected(hovered) }}
         />
       )}
