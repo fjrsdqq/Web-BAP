@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { ArrowLeft, X, Building2, Wrench, Shield, Lightbulb } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 
@@ -187,7 +187,7 @@ function HoverPreview({ member, onEnter, onLeave, onClick }: {
       <div className="absolute inset-0 bg-[#0f1f3d]/65 backdrop-blur-md" onClick={onLeave} />
 
 
-      {/* Zoomed card — mouse enter cancels close timer, leave restarts it */}
+      {/* Zoomed card */}
       <div
         className="relative flex flex-col items-center text-center overflow-hidden cursor-pointer"
         style={{
@@ -201,6 +201,16 @@ function HoverPreview({ member, onEnter, onLeave, onClick }: {
         onMouseLeave={onLeave}
         onClick={onClick}
       >
+        {/* X close button */}
+        <button
+          onClick={(e) => { e.stopPropagation(); onLeave() }}
+          className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center
+                     bg-black/40 hover:bg-black/70 transition-colors"
+          aria-label="Tutup"
+        >
+          <X size={14} className="text-white" />
+        </button>
+
         {/* Portrait photo — object-contain so nothing is cropped */}
         <div
           className="w-full flex items-center justify-center"
@@ -334,6 +344,13 @@ export default function CompanyStructurePage() {
 
   const openPreview  = (m: Member) => setHovered(m)
   const closePreview = ()          => setHovered(null)
+
+  // Close on ESC key
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') { setHovered(null); setSelected(null) } }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [])
 
   const cardProps = (id: string) => ({
     member: get(id),
