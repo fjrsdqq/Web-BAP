@@ -22,7 +22,7 @@ const members: Member[] = [
     name: 'Achmad Chaerudin',
     role: 'Komisaris',
     tier: 'komisaris',
-    photo: null,
+    photo: '/images/Company Structure/Achmad Chaerudin.jpeg',
     description:
       'Menjalankan fungsi pengawasan terhadap kebijakan direksi dan jalannya kegiatan usaha PT Batavia Asia Project untuk kepentingan perusahaan dan seluruh pemangku kepentingan.',
     responsibilities: [
@@ -52,7 +52,7 @@ const members: Member[] = [
     name: 'Ferrial Sunaryo',
     role: 'Penasihat',
     tier: 'advisor',
-    photo: null,
+    photo: '/images/Company Structure/Ferrial Sunaryo.jpeg',
     description:
       'Memberikan masukan dan arahan strategis kepada manajemen PT Batavia Asia Project berdasarkan keahlian dan pengalamannya di industri konstruksi dan properti.',
     responsibilities: [
@@ -66,7 +66,7 @@ const members: Member[] = [
     name: 'Hendri Arifin',
     role: 'Penasihat',
     tier: 'advisor',
-    photo: null,
+    photo: '/images/Company Structure/Hendri Arifin.jpeg',
     description:
       'Berkontribusi dalam memberikan pandangan strategis dan rekomendasi kepada manajemen PT Batavia Asia Project untuk mendukung pertumbuhan perusahaan yang berkelanjutan.',
     responsibilities: [
