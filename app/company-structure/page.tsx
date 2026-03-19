@@ -109,7 +109,8 @@ function OrgCard({ member, onClick }: { member: Member; onClick: () => void }) {
       title="Lihat profil"
       style={{ background: c.bg, color: c.text, borderColor: c.border }}
       className="group relative flex flex-col items-center text-center px-5 py-5 w-40 border-2
-                 hover:scale-105 hover:shadow-2xl transition-all duration-300 rounded-sm cursor-pointer"
+                 hover:scale-110 hover:shadow-[0_8px_30px_rgba(201,168,76,0.35)] hover:-translate-y-1
+                 transition-all duration-200 ease-out rounded-sm cursor-pointer z-10"
     >
       {/* Avatar */}
       <div className="w-14 h-14 rounded-full overflow-hidden mb-3 flex items-center justify-center"
@@ -212,7 +213,7 @@ export default function CompanyStructurePage() {
         </div>
 
         {/* ── Org Chart ── */}
-        <div className="py-16 px-4 overflow-x-auto">
+        <div className="py-16 px-4 overflow-x-auto overflow-y-visible">
           <div className="org-tree flex flex-col items-center" style={{ minWidth: 560 }}>
 
             {/* ── Level 1: Komisaris ── */}
