@@ -311,51 +311,44 @@ export default function CompanyStructurePage() {
         </div>
 
         {/* ── Org Chart ── */}
+        {/* Card width=176, gap=80 → row total=688, card-center offset=88 */}
         <div className="py-20 px-6 overflow-x-auto">
-          <div className="org-wrap">
+          <div style={{ display:'flex', flexDirection:'column', alignItems:'center', minWidth:760 }}>
 
             {/* Row 1 — Komisaris */}
-            <div className="row1">
-              <div className="komisaris-node">
-                <OrgCard member={get('achmad')} onClick={() => setSelected(get('achmad'))} />
+            <OrgCard member={get('achmad')} onClick={() => setSelected(get('achmad'))} />
+
+            {/* Solid line down from Komisaris */}
+            <div style={{ width:2, height:48, background:'#c9a84c' }} />
+
+            {/* Branch connector + Row 2 cards in one 688px container */}
+            <div style={{ width:688, position:'relative' }}>
+
+              {/* H-bar: from center-of-left-card to center-of-right-card */}
+              <div style={{ position:'relative', height:48, marginLeft:88, marginRight:88 }}>
+                {/* Horizontal gold bar */}
+                <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:'#c9a84c' }} />
+                {/* Left vertical drop — dashed (advisor) */}
+                <div style={{ position:'absolute', top:0, left:-1, width:2, height:48, borderLeft:'2px dashed rgba(15,31,61,0.45)' }} />
+                {/* Center vertical drop — solid (president) */}
+                <div style={{ position:'absolute', top:0, left:'50%', transform:'translateX(-1px)', width:2, height:48, background:'#c9a84c' }} />
+                {/* Right vertical drop — dashed (advisor) */}
+                <div style={{ position:'absolute', top:0, right:-1, width:2, height:48, borderLeft:'2px dashed rgba(15,31,61,0.45)' }} />
+              </div>
+
+              {/* Three cards */}
+              <div style={{ display:'flex', gap:80, alignItems:'flex-start' }}>
+                <OrgCard member={get('ferrial')} onClick={() => setSelected(get('ferrial'))} />
+                <OrgCard member={get('hammam')} onClick={() => setSelected(get('hammam'))} />
+                <OrgCard member={get('hendri')} onClick={() => setSelected(get('hendri'))} />
               </div>
             </div>
 
-            {/* Connector: komisaris → row2 */}
-            <div className="v-connector" />
-
-            {/* Row 2 — Advisor | President | Advisor */}
-            <div className="row2">
-              {/* H-bar spanning full width */}
-              <div className="h-bar" />
-
-              <div className="row2-inner">
-                {/* Left advisor */}
-                <div className="advisor-col">
-                  <div className="v-drop-left" />
-                  <OrgCard member={get('ferrial')} onClick={() => setSelected(get('ferrial'))} />
-                </div>
-
-                {/* President center */}
-                <div className="president-col">
-                  <OrgCard member={get('hammam')} onClick={() => setSelected(get('hammam'))} />
-                </div>
-
-                {/* Right advisor */}
-                <div className="advisor-col">
-                  <div className="v-drop-right" />
-                  <OrgCard member={get('hendri')} onClick={() => setSelected(get('hendri'))} />
-                </div>
-              </div>
-            </div>
-
-            {/* Connector: president → row3 */}
-            <div className="v-connector center-only" />
+            {/* Solid line down from President → Director */}
+            <div style={{ width:2, height:48, background:'#c9a84c' }} />
 
             {/* Row 3 — Director */}
-            <div className="row3">
-              <OrgCard member={get('rahmat')} onClick={() => setSelected(get('rahmat'))} />
-            </div>
+            <OrgCard member={get('rahmat')} onClick={() => setSelected(get('rahmat'))} />
 
           </div>
         </div>
@@ -406,93 +399,8 @@ export default function CompanyStructurePage() {
           z-index: 10;
         }
         .org-card:hover {
-          transform: translateY(-6px) scale(1.04);
-          box-shadow: 0 16px 40px rgba(201,168,76,0.3), 0 4px 16px rgba(15,31,61,0.2);
-        }
-
-        /* ── CHART WRAPPER ── */
-        .org-wrap {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          min-width: 700px;
-          max-width: 900px;
-          margin: 0 auto;
-        }
-
-        /* Row 1 */
-        .row1 {
-          display: flex;
-          justify-content: center;
-        }
-        .komisaris-node {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        /* Vertical connector (komisaris → row2 h-bar) */
-        .v-connector {
-          width: 2px;
-          height: 48px;
-          background: #c9a84c;
-        }
-
-        /* Row 2 */
-        .row2 {
-          position: relative;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          width: 100%;
-        }
-
-        /* Horizontal bar spanning advisors + president */
-        .h-bar {
-          position: absolute;
-          top: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 460px;
-          height: 2px;
-          background: #c9a84c;
-        }
-
-        .row2-inner {
-          display: flex;
-          align-items: flex-start;
-          justify-content: center;
-          gap: 80px;
-          padding-top: 0;
-        }
-
-        /* Advisor column: v-drop then card */
-        .advisor-col {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-        .v-drop-left,
-        .v-drop-right {
-          width: 2px;
-          height: 48px;
-          border-left: 2px dashed rgba(15,31,61,0.4);
-        }
-
-        /* President sits right at the h-bar */
-        .president-col {
-          margin-top: 0;
-        }
-
-        /* Vertical connector from president down (center only) */
-        .v-connector.center-only {
-          background: #c9a84c;
-        }
-
-        /* Row 3 */
-        .row3 {
-          display: flex;
-          justify-content: center;
+          transform: scale(1.5);
+          box-shadow: 0 20px 60px rgba(201,168,76,0.4), 0 4px 20px rgba(15,31,61,0.25);
         }
 
         /* Modal animation */
