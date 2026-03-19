@@ -109,7 +109,7 @@ function OrgCard({ member, onClick }: { member: Member; onClick: () => void }) {
       title="Lihat profil"
       style={{ background: c.bg, color: c.text, borderColor: c.border }}
       className="group relative flex flex-col items-center text-center px-5 py-5 w-40 border-2
-                 hover:scale-110 hover:shadow-[0_8px_30px_rgba(201,168,76,0.35)] hover:-translate-y-1
+                 hover:scale-150 hover:shadow-[0_8px_30px_rgba(201,168,76,0.35)] hover:-translate-y-1
                  transition-all duration-200 ease-out rounded-sm cursor-pointer z-10"
     >
       {/* Avatar */}
