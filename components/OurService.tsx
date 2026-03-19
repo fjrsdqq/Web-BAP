@@ -9,6 +9,7 @@ import {
   Layers, Brush, Settings, ArrowRight, type LucideIcon,
 } from 'lucide-react'
 import ShadeUpReveal from './ShadeUpReveal'
+import { useLang } from '@/contexts/LanguageContext'
 
 interface Service {
   code: string
@@ -218,6 +219,15 @@ const categories: Category[] = [
 
 export default function OurService() {
   const [activeTab, setActiveTab] = useState('building')
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
+
+  const categoryLabels: Record<string, string> = {
+    building:  t('Building Construction', 'Konstruksi Gedung'),
+    mep:       t('MEP & Building Systems', 'MEP & Sistem Bangunan'),
+    finishing: t('Finishing & Interior Works', 'Finishing & Interior'),
+    repair:    t('Repair & Maintenance', 'Perbaikan & Perawatan'),
+  }
 
   useEffect(() => {
     const handler = (e: Event) => {
@@ -236,14 +246,16 @@ export default function OurService() {
       <div className="container-section">
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="section-label mb-3">Our Services</p>
+          <p className="section-label mb-3">{t('Our Services', 'Layanan Kami')}</p>
           <h2 className="section-title mb-5">
-            Comprehensive Construction{' '}
-            <span className="text-gold">Solutions</span>
+            {t('Comprehensive Construction', 'Solusi Konstruksi')}{' '}
+            <span className="text-gold">{t('Solutions', 'Komprehensif')}</span>
           </h2>
           <p className="font-body text-gray-500 leading-relaxed">
-            We provide end-to-end construction and project management services
-            tailored to the unique needs of every client.
+            {t(
+              'We provide end-to-end construction and project management services tailored to the unique needs of every client.',
+              'Kami menyediakan layanan konstruksi dan manajemen proyek menyeluruh yang disesuaikan dengan kebutuhan unik setiap klien.'
+            )}
           </p>
         </div>
 
@@ -259,7 +271,7 @@ export default function OurService() {
                   : 'bg-white text-navy/70 border-light-gray hover:border-navy hover:text-navy'
               }`}
             >
-              {cat.label}
+              {categoryLabels[cat.id] ?? cat.label}
             </button>
           ))}
         </div>
@@ -286,11 +298,11 @@ export default function OurService() {
         <p className="text-center font-body text-gray-400 text-sm mt-10">
           Showing{' '}
           <span className="text-navy font-semibold">{activeCategory.services.length}</span>{' '}
-          of{' '}
+          {t('of', 'dari')}{' '}
           <span className="text-navy font-semibold">
             {categories.reduce((acc, c) => acc + c.services.length, 0)}
           </span>{' '}
-          total services
+          {t('total services', 'total layanan')}
         </p>
       </div>
     </section>

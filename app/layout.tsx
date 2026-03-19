@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
 import './globals.css'
+import { LanguageProvider } from '@/contexts/LanguageContext'
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -99,7 +100,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id" className={`${playfair.variable} ${inter.variable}`}>
-      <body>{children}</body>
+      <body><LanguageProvider>{children}</LanguageProvider></body>
     </html>
   )
 }

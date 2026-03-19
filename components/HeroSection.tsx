@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ChevronDown, X, Target, Rocket, Star } from 'lucide-react'
+import { useLang } from '@/contexts/LanguageContext'
 
 const fadeUp = (delay: number) => ({
   initial: { opacity: 0, y: 32 },
@@ -11,26 +12,88 @@ const fadeUp = (delay: number) => ({
   transition: { duration: 0.75, delay, ease: [0.25, 0.1, 0.25, 1.0] as number[] },
 })
 
-const missions = [
-  { title: 'Quality & Timeliness', desc: 'Delivering construction services with the highest workmanship standards, efficiency, and on-time handover.' },
-  { title: 'Health, Safety & Environment', desc: 'Enforcing strict HSE standards on every project to ensure a safe working environment and Zero Accident.' },
-  { title: 'Professional Governance', desc: 'Leading with transparent, high-integrity project management to maintain client trust and operational excellence.' },
-  { title: 'Client Satisfaction', desc: 'Building long-term strategic partnerships with clients, vendors, and sub-contractors based on mutual benefit and proactive communication.' },
-  { title: 'Continuous Innovation', desc: 'Constantly adapting to advances in technology, materials, and construction methods to deliver the most effective, value-added solutions.' },
-]
-
-const coreValues = [
-  { letter: 'B', word: 'Brilliance', desc: 'Working with intelligence and delivering outstanding results in every project.' },
-  { letter: 'U', word: 'Unity', desc: 'Prioritizing solid teamwork between management and field experts.' },
-  { letter: 'I', word: 'Integrity', desc: 'Upholding honesty and business ethics in every contract and commitment.' },
-  { letter: 'L', word: 'Loyalty', desc: 'Fully committed to agreements and unwavering dedication to client satisfaction.' },
-  { letter: 'D', word: 'Dedication', desc: 'Devoted to completing every project within budget and to technical specifications.' },
-]
-
 export default function HeroSection() {
   const [modalOpen, setModalOpen] = useState(false)
   const [visitorCount, setVisitorCount] = useState<number | null>(null)
   const registered = useRef(false)
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
+
+  const missions = [
+    {
+      title: t('Quality & Timeliness', 'Kualitas & Ketepatan Waktu'),
+      desc: t(
+        'Delivering construction services with the highest workmanship standards, efficiency, and on-time handover.',
+        'Memberikan layanan konstruksi dengan standar pengerjaan tertinggi, efisiensi, dan serah terima tepat waktu.'
+      ),
+    },
+    {
+      title: t('Health, Safety & Environment', 'Kesehatan, Keselamatan & Lingkungan'),
+      desc: t(
+        'Enforcing strict HSE standards on every project to ensure a safe working environment and Zero Accident.',
+        'Menerapkan standar K3L ketat di setiap proyek untuk memastikan lingkungan kerja yang aman dan Zero Accident.'
+      ),
+    },
+    {
+      title: t('Professional Governance', 'Tata Kelola Profesional'),
+      desc: t(
+        'Leading with transparent, high-integrity project management to maintain client trust and operational excellence.',
+        'Memimpin dengan manajemen proyek transparan dan berintegritas tinggi untuk menjaga kepercayaan klien dan keunggulan operasional.'
+      ),
+    },
+    {
+      title: t('Client Satisfaction', 'Kepuasan Klien'),
+      desc: t(
+        'Building long-term strategic partnerships with clients, vendors, and sub-contractors based on mutual benefit and proactive communication.',
+        'Membangun kemitraan strategis jangka panjang dengan klien, vendor, dan sub-kontraktor berdasarkan manfaat bersama dan komunikasi proaktif.'
+      ),
+    },
+    {
+      title: t('Continuous Innovation', 'Inovasi Berkelanjutan'),
+      desc: t(
+        'Constantly adapting to advances in technology, materials, and construction methods to deliver the most effective, value-added solutions.',
+        'Terus beradaptasi dengan kemajuan teknologi, material, dan metode konstruksi untuk menghadirkan solusi paling efektif dan bernilai tambah.'
+      ),
+    },
+  ]
+
+  const coreValues = [
+    {
+      letter: 'B', word: 'Brilliance',
+      desc: t(
+        'Working with intelligence and delivering outstanding results in every project.',
+        'Bekerja dengan kecerdasan dan menghadirkan hasil luar biasa di setiap proyek.'
+      ),
+    },
+    {
+      letter: 'U', word: 'Unity',
+      desc: t(
+        'Prioritizing solid teamwork between management and field experts.',
+        'Mengutamakan kerja sama tim yang solid antara manajemen dan tenaga ahli lapangan.'
+      ),
+    },
+    {
+      letter: 'I', word: 'Integrity',
+      desc: t(
+        'Upholding honesty and business ethics in every contract and commitment.',
+        'Menjunjung tinggi kejujuran dan etika bisnis dalam setiap kontrak dan komitmen.'
+      ),
+    },
+    {
+      letter: 'L', word: 'Loyalty',
+      desc: t(
+        'Fully committed to agreements and unwavering dedication to client satisfaction.',
+        'Sepenuhnya berkomitmen pada perjanjian dan berdedikasi penuh untuk kepuasan klien.'
+      ),
+    },
+    {
+      letter: 'D', word: 'Dedication',
+      desc: t(
+        'Devoted to completing every project within budget and to technical specifications.',
+        'Berdedikasi menyelesaikan setiap proyek sesuai anggaran dan spesifikasi teknis.'
+      ),
+    },
+  ]
 
   useEffect(() => {
     const fetchCount = (method: 'GET' | 'POST') =>
@@ -68,10 +131,8 @@ export default function HeroSection() {
           sizes="100vw"
         />
 
-        {/* Directional gradient overlay */}
         <div className="absolute inset-0 overlay-navy" />
 
-        {/* Decorative gold accent line */}
         <motion.div
           className="absolute left-0 top-0 h-full w-1 bg-gold"
           initial={{ scaleY: 0 }}
@@ -83,31 +144,29 @@ export default function HeroSection() {
         {/* Content */}
         <div className="relative z-10 h-full container-section flex items-center">
           <div className="max-w-2xl">
-            {/* Label */}
             <motion.p {...fadeUp(0.2)} className="section-label mb-4">
-              Professional Contractor & Developer
+              {t('Professional Contractor & Developer', 'Kontraktor & Developer Profesional')}
             </motion.p>
 
-            {/* Heading */}
             <motion.h1
               {...fadeUp(0.4)}
               className="font-heading text-4xl sm:text-5xl lg:text-6xl text-white leading-tight mb-6"
             >
-              Building Your Vision{' '}
+              {t('Building Your Vision', 'Membangun Visi Anda')}{' '}
               <br />
-              <span className="text-gold">With Quality</span>
+              <span className="text-gold">{t('With Quality', 'Dengan Kualitas')}</span>
             </motion.h1>
 
-            {/* Subheading — condensed vision */}
             <motion.p
               {...fadeUp(0.55)}
               className="font-body text-white/75 text-base lg:text-lg leading-relaxed mb-3 max-w-xl"
             >
-              A nationally trusted construction company — delivering excellence,
-              innovation, and integrity across every infrastructure and property project.
+              {t(
+                'A nationally trusted construction company — delivering excellence, innovation, and integrity across every infrastructure and property project.',
+                'Perusahaan konstruksi terpercaya nasional — menghadirkan keunggulan, inovasi, dan integritas di setiap proyek infrastruktur dan properti.'
+              )}
             </motion.p>
 
-            {/* See More link */}
             <motion.div {...fadeUp(0.62)} className="mb-8">
               <button
                 onClick={() => setModalOpen(true)}
@@ -116,20 +175,18 @@ export default function HeroSection() {
                            decoration-gold/40 hover:decoration-gold
                            transition-all duration-200"
               >
-                View Vision, Mission & Core Values
+                {t('View Vision, Mission & Core Values', 'Lihat Visi, Misi & Nilai Perusahaan')}
                 <ArrowRight size={13} />
               </button>
             </motion.div>
 
-            {/* CTA Buttons */}
             <motion.div {...fadeUp(0.7)} className="flex flex-wrap gap-4">
               <a href="#portfolio" className="btn-primary">
-                View Portfolio
+                {t('View Portfolio', 'Lihat Portfolio')}
                 <ArrowRight size={18} />
               </a>
             </motion.div>
 
-            {/* Stats mini — Website Visitors only */}
             <motion.div
               {...fadeUp(0.85)}
               className="flex gap-8 mt-10 pt-8 border-t border-white/20"
@@ -138,7 +195,9 @@ export default function HeroSection() {
                 <div className="font-heading text-2xl font-bold text-gold">
                   {visitorCount !== null ? visitorCount.toLocaleString() : '—'}
                 </div>
-                <div className="font-body text-white/60 text-xs mt-0.5">Website Visitors</div>
+                <div className="font-body text-white/60 text-xs mt-0.5">
+                  {t('Website Visitors', 'Pengunjung Website')}
+                </div>
               </div>
             </motion.div>
           </div>
@@ -152,7 +211,7 @@ export default function HeroSection() {
           transition={{ delay: 1.5, duration: 0.6 }}
         >
           <span className="font-body text-white/50 text-xs tracking-widest uppercase">
-            Scroll
+            {t('Scroll', 'Gulir')}
           </span>
           <ChevronDown size={20} className="text-gold animate-bounce" />
         </motion.div>
@@ -162,7 +221,6 @@ export default function HeroSection() {
       <AnimatePresence>
         {modalOpen && (
           <>
-            {/* Backdrop */}
             <motion.div
               className="fixed inset-0 bg-black/70 backdrop-blur-sm z-[60]"
               initial={{ opacity: 0 }}
@@ -171,7 +229,6 @@ export default function HeroSection() {
               onClick={() => setModalOpen(false)}
             />
 
-            {/* Panel */}
             <motion.div
               className="fixed inset-y-0 right-0 z-[70] w-full max-w-2xl
                          bg-navy overflow-y-auto shadow-2xl"
@@ -184,7 +241,7 @@ export default function HeroSection() {
               <div className="sticky top-0 bg-navy border-b border-white/10 px-8 py-5
                               flex items-center justify-between z-10">
                 <div>
-                  <p className="section-label text-xs">Company Profile</p>
+                  <p className="section-label text-xs">{t('Company Profile', 'Profil Perusahaan')}</p>
                   <h3 className="font-heading text-white text-xl mt-0.5">
                     PT Batavia Asia Project
                   </h3>
@@ -207,13 +264,14 @@ export default function HeroSection() {
                     <div className="w-9 h-9 bg-gold/10 flex items-center justify-center shrink-0">
                       <Target size={18} className="text-gold" />
                     </div>
-                    <h4 className="font-heading text-white text-xl">Vision</h4>
+                    <h4 className="font-heading text-white text-xl">{t('Vision', 'Visi')}</h4>
                   </div>
                   <div className="border-l-2 border-gold pl-5">
                     <p className="font-body text-white/70 leading-relaxed text-sm">
-                      To become a nationally recognized construction company that is
-                      superior, trusted, and innovative — serving as the primary partner
-                      in delivering high-quality infrastructure and property development.
+                      {t(
+                        'To become a nationally recognized construction company that is superior, trusted, and innovative — serving as the primary partner in delivering high-quality infrastructure and property development.',
+                        'Menjadi perusahaan konstruksi yang diakui secara nasional, unggul, terpercaya, dan inovatif — sebagai mitra utama dalam menghadirkan infrastruktur dan pengembangan properti berkualitas tinggi.'
+                      )}
                     </p>
                   </div>
                 </div>
@@ -224,7 +282,7 @@ export default function HeroSection() {
                     <div className="w-9 h-9 bg-gold/10 flex items-center justify-center shrink-0">
                       <Rocket size={18} className="text-gold" />
                     </div>
-                    <h4 className="font-heading text-white text-xl">Mission</h4>
+                    <h4 className="font-heading text-white text-xl">{t('Mission', 'Misi')}</h4>
                   </div>
                   <ul className="space-y-4">
                     {missions.map((m, i) => (
@@ -254,7 +312,7 @@ export default function HeroSection() {
                       <Star size={18} className="text-gold" />
                     </div>
                     <div>
-                      <h4 className="font-heading text-white text-xl">Core Values</h4>
+                      <h4 className="font-heading text-white text-xl">{t('Core Values', 'Nilai Inti')}</h4>
                       <p className="font-body text-white/40 text-xs mt-0.5 tracking-widest uppercase">
                         B · U · I · L · D
                       </p>

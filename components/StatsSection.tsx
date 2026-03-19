@@ -2,14 +2,16 @@
 
 import { useRef, useEffect, useState } from 'react'
 import { useInView } from 'framer-motion'
+import { useLang } from '@/contexts/LanguageContext'
 
 function VisitorCard({ isActive }: { isActive: boolean }) {
   const [visitorCount, setVisitorCount] = useState<number>(0)
   const [animatedCount, setAnimatedCount] = useState(0)
   const [hasAnimated, setHasAnimated] = useState(false)
   const registered = useRef(false)
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
 
-  // Register visit once per session + poll every 30s for real-time updates
   useEffect(() => {
     const fetchCount = (method: 'GET' | 'POST') =>
       fetch('/api/visitors', { method, cache: 'no-store' })
@@ -25,12 +27,10 @@ function VisitorCard({ isActive }: { isActive: boolean }) {
       })
     }
 
-    // Poll every 30 seconds for real-time updates
     const interval = setInterval(() => fetchCount('GET'), 30_000)
     return () => clearInterval(interval)
   }, [])
 
-  // Animate count when section comes into view (once)
   useEffect(() => {
     if (!isActive || visitorCount === 0 || hasAnimated) return
     setHasAnimated(true)
@@ -51,7 +51,6 @@ function VisitorCard({ isActive }: { isActive: boolean }) {
     requestAnimationFrame(step)
   }, [isActive, visitorCount, hasAnimated])
 
-  // After animation: keep display in sync with live count
   useEffect(() => {
     if (hasAnimated) setAnimatedCount(visitorCount)
   }, [visitorCount, hasAnimated])
@@ -62,10 +61,10 @@ function VisitorCard({ isActive }: { isActive: boolean }) {
         {animatedCount > 0 ? animatedCount.toLocaleString() : '—'}
       </div>
       <div className="font-heading text-white text-lg font-semibold mb-1">
-        Website Visitors
+        {t('Website Visitors', 'Pengunjung Website')}
       </div>
       <div className="font-body text-white/50 text-xs">
-        Total visitors to our site
+        {t('Total visitors to our site', 'Total pengunjung situs kami')}
       </div>
     </div>
   )
@@ -74,6 +73,8 @@ function VisitorCard({ isActive }: { isActive: boolean }) {
 export default function StatsSection() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
 
   return (
     <section className="bg-navy section-padding relative overflow-hidden">
@@ -83,20 +84,15 @@ export default function StatsSection() {
                       w-96 h-96 rounded-full bg-gold/5 blur-3xl" />
 
       <div className="container-section relative z-10">
-        {/* Header */}
         <div className="text-center mb-16">
-          <p className="section-label mb-3">The Numbers Speak</p>
+          <p className="section-label mb-3">{t('The Numbers Speak', 'Angka Berbicara')}</p>
           <h2 className="section-title-white">
-            A Track Record We Are{' '}
-            <span className="text-gold">Proud Of</span>
+            {t('A Track Record We Are', 'Rekam Jejak yang Membuat Kami')}{' '}
+            <span className="text-gold">{t('Proud Of', 'Bangga')}</span>
           </h2>
         </div>
 
-        {/* Stats Grid */}
-        <div
-          ref={ref}
-          className="border border-white/10 max-w-sm mx-auto"
-        >
+        <div ref={ref} className="border border-white/10 max-w-sm mx-auto">
           <VisitorCard isActive={isInView} />
         </div>
       </div>

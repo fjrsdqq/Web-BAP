@@ -5,28 +5,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Phone, ChevronDown, Building2, Users, Star, FileText, Wrench, Zap, Layers, PaintBucket } from 'lucide-react'
-
-const aboutItems = [
-  { label: 'Company Profile', href: '/company-profile', icon: FileText },
-  { label: 'Company Structure', href: '/company-structure', icon: Users },
-  { label: 'Company Values', href: '/company-values', icon: Star },
-  { label: 'Company Policy', href: '/company-policy', icon: FileText },
-]
-
-const serviceItems = [
-  { label: 'Building Construction', href: '#layanan', tab: 'building', icon: Building2 },
-  { label: 'MEP & Building Systems', href: '#layanan', tab: 'mep', icon: Zap },
-  { label: 'Finishing & Interior Works', href: '#layanan', tab: 'finishing', icon: PaintBucket },
-  { label: 'Repair & Maintenance', href: '#layanan', tab: 'repair', icon: Wrench },
-  { label: 'Civil & Road Works', href: '#layanan', tab: 'building', icon: Layers },
-]
-
-const simpleLinks = [
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Why Us', href: '#keunggulan' },
-  { label: 'Career', href: '#career' },
-  { label: 'Contact', href: '#kontak' },
-]
+import { useLang } from '@/contexts/LanguageContext'
 
 const dropdownVariants = {
   hidden: { opacity: 0, y: -8, scaleY: 0.95 },
@@ -39,6 +18,31 @@ export default function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null)
   const navRef = useRef<HTMLElement>(null)
+  const { lang, setLang } = useLang()
+
+  const t = (en: string, id: string) => lang === 'en' ? en : id
+
+  const aboutItems = [
+    { label: t('Company Profile', 'Profil Perusahaan'), href: '/company-profile', icon: FileText },
+    { label: t('Company Structure', 'Struktur Organisasi'), href: '/company-structure', icon: Users },
+    { label: t('Company Values', 'Nilai Perusahaan'), href: '/company-values', icon: Star },
+    { label: t('Company Policy', 'Kebijakan Perusahaan'), href: '/company-policy', icon: FileText },
+  ]
+
+  const serviceItems = [
+    { label: t('Building Construction', 'Konstruksi Gedung'), href: '#layanan', tab: 'building', icon: Building2 },
+    { label: t('MEP & Building Systems', 'MEP & Sistem Bangunan'), href: '#layanan', tab: 'mep', icon: Zap },
+    { label: t('Finishing & Interior Works', 'Finishing & Interior'), href: '#layanan', tab: 'finishing', icon: PaintBucket },
+    { label: t('Repair & Maintenance', 'Perbaikan & Perawatan'), href: '#layanan', tab: 'repair', icon: Wrench },
+    { label: t('Civil & Road Works', 'Pekerjaan Sipil & Jalan'), href: '#layanan', tab: 'building', icon: Layers },
+  ]
+
+  const simpleLinks = [
+    { label: t('Portfolio', 'Portfolio'), href: '#portfolio' },
+    { label: t('Why Us', 'Mengapa Kami'), href: '#keunggulan' },
+    { label: t('Career', 'Karir'), href: '#career' },
+    { label: t('Contact', 'Kontak'), href: '#kontak' },
+  ]
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -46,7 +50,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  // Close dropdown when clicking outside
   useEffect(() => {
     const handleClick = (e: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(e.target as Node)) {
@@ -67,7 +70,6 @@ export default function Navbar() {
     handleLinkClick()
     window.dispatchEvent(new CustomEvent('service-tab-change', { detail: tab }))
   }
-
 
   return (
     <header
@@ -102,7 +104,7 @@ export default function Navbar() {
 
           {/* About Us Dropdown */}
           <DropdownItem
-            label="About Us"
+            label={t('About Us', 'Tentang Kami')}
             id="about"
             items={aboutItems}
             active={activeDropdown === 'about'}
@@ -113,7 +115,7 @@ export default function Navbar() {
 
           {/* Services Dropdown */}
           <DropdownItem
-            label="Services"
+            label={t('Services', 'Layanan')}
             id="services"
             items={serviceItems}
             active={activeDropdown === 'services'}
@@ -139,8 +141,29 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Desktop CTA */}
-        <div className="hidden lg:flex items-center">
+        {/* Desktop CTA + Language Toggle */}
+        <div className="hidden lg:flex items-center gap-3">
+          {/* Language Toggle */}
+          <div className="flex items-center border border-white/30 overflow-hidden text-xs font-bold">
+            <button
+              onClick={() => setLang('id')}
+              className={`px-2.5 py-1.5 transition-all duration-200 ${
+                lang === 'id' ? 'bg-gold text-navy' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              ID
+            </button>
+            <div className="w-px h-3.5 bg-white/20" />
+            <button
+              onClick={() => setLang('en')}
+              className={`px-2.5 py-1.5 transition-all duration-200 ${
+                lang === 'en' ? 'bg-gold text-navy' : 'text-white/60 hover:text-white'
+              }`}
+            >
+              EN
+            </button>
+          </div>
+
           <a
             href="https://wa.me/6282313808775"
             target="_blank"
@@ -148,7 +171,7 @@ export default function Navbar() {
             className="btn-primary text-sm py-2.5 px-5"
           >
             <Phone size={15} />
-            Contact Us
+            {t('Contact Us', 'Hubungi Kami')}
           </a>
         </div>
 
@@ -176,7 +199,7 @@ export default function Navbar() {
 
               {/* About Us accordion */}
               <MobileAccordion
-                label="About Us"
+                label={t('About Us', 'Tentang Kami')}
                 id="about"
                 items={aboutItems}
                 expanded={mobileExpanded === 'about'}
@@ -186,7 +209,7 @@ export default function Navbar() {
 
               {/* Services accordion */}
               <MobileAccordion
-                label="Services"
+                label={t('Services', 'Layanan')}
                 id="services"
                 items={serviceItems}
                 expanded={mobileExpanded === 'services'}
@@ -214,15 +237,39 @@ export default function Navbar() {
                 </motion.div>
               ))}
 
+              {/* Mobile Language Toggle */}
+              <div className="flex items-center gap-3 mt-4 pt-4 border-t border-white/10">
+                <span className="font-body text-xs text-white/50">Language:</span>
+                <div className="flex items-center border border-white/30 overflow-hidden text-xs font-bold">
+                  <button
+                    onClick={() => { setLang('id'); handleLinkClick() }}
+                    className={`px-3 py-1.5 transition-all duration-200 ${
+                      lang === 'id' ? 'bg-gold text-navy' : 'text-white/60'
+                    }`}
+                  >
+                    ID
+                  </button>
+                  <div className="w-px h-3.5 bg-white/20" />
+                  <button
+                    onClick={() => { setLang('en'); handleLinkClick() }}
+                    className={`px-3 py-1.5 transition-all duration-200 ${
+                      lang === 'en' ? 'bg-gold text-navy' : 'text-white/60'
+                    }`}
+                  >
+                    EN
+                  </button>
+                </div>
+              </div>
+
               <a
                 href="https://wa.me/6282313808775"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary mt-5 justify-center text-sm"
+                className="btn-primary mt-4 justify-center text-sm"
                 onClick={handleLinkClick}
               >
                 <Phone size={15} />
-                Contact Us
+                {t('Contact Us', 'Hubungi Kami')}
               </a>
             </div>
           </motion.div>
@@ -273,9 +320,7 @@ function DropdownItem({ label, items, active, onMouseEnter, onMouseLeave, onLink
             className="absolute top-full left-0 mt-2 w-56 bg-navy-dark border border-white/10
                        shadow-2xl overflow-hidden z-50"
           >
-            {/* Gold top accent */}
             <div className="h-0.5 bg-gradient-gold w-full" />
-
             <ul className="py-2">
               {items.map((item) => {
                 const Icon = item.icon

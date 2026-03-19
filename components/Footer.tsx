@@ -1,23 +1,9 @@
+'use client'
+
 import Link from 'next/link'
 import Image from 'next/image'
 import { Instagram, Linkedin, Facebook, Youtube, MapPin, Phone, Mail, ArrowRight } from 'lucide-react'
-
-const navLinks = [
-  { label: 'Home', href: '#hero' },
-  { label: 'Our Services', href: '#layanan' },
-  { label: 'Portfolio', href: '#portfolio' },
-  { label: 'Why Us', href: '#keunggulan' },
-  { label: 'Contact', href: '#kontak' },
-]
-
-const serviceLinks = [
-  'Building Construction',
-  'Renovation & Retrofit',
-  'Interior Design',
-  'Project Management',
-  'Property Development',
-  'Technical Consulting',
-]
+import { useLang } from '@/contexts/LanguageContext'
 
 const socialLinks = [
   { icon: Instagram, href: '#', label: 'Instagram' },
@@ -34,6 +20,25 @@ const contactInfo = [
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
+
+  const navLinks = [
+    { label: t('Home', 'Beranda'), href: '#hero' },
+    { label: t('Our Services', 'Layanan Kami'), href: '#layanan' },
+    { label: t('Portfolio', 'Portfolio'), href: '#portfolio' },
+    { label: t('Why Us', 'Mengapa Kami'), href: '#keunggulan' },
+    { label: t('Contact', 'Kontak'), href: '#kontak' },
+  ]
+
+  const serviceLinks = [
+    t('Building Construction', 'Konstruksi Gedung'),
+    t('Renovation & Retrofit', 'Renovasi & Retrofit'),
+    t('Interior Design', 'Desain Interior'),
+    t('Project Management', 'Manajemen Proyek'),
+    t('Property Development', 'Pengembangan Properti'),
+    t('Technical Consulting', 'Konsultasi Teknis'),
+  ]
 
   return (
     <footer className="bg-navy-dark text-white">
@@ -42,7 +47,6 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
-            {/* Logo */}
             <div className="flex items-center gap-3 mb-6">
               <Image
                 src="/images/LOGO.png"
@@ -62,11 +66,12 @@ export default function Footer() {
             </div>
 
             <p className="font-body text-white/55 text-sm leading-relaxed mb-6">
-              Your trusted partner in construction, project management, and
-              property development to international standards since 2012.
+              {t(
+                'Your trusted partner in construction, project management, and property development to international standards since 2012.',
+                'Mitra terpercaya Anda dalam konstruksi, manajemen proyek, dan pengembangan properti berstandar internasional sejak 2012.'
+              )}
             </p>
 
-            {/* Social links */}
             <div className="flex gap-3">
               {socialLinks.map(({ icon: Icon, href, label }) => (
                 <a
@@ -87,7 +92,7 @@ export default function Footer() {
           {/* Column 2 — Navigation */}
           <div>
             <h4 className="font-heading font-semibold text-white mb-6 text-base">
-              Navigation
+              {t('Navigation', 'Navigasi')}
             </h4>
             <ul className="space-y-3">
               {navLinks.map((link) => (
@@ -113,7 +118,7 @@ export default function Footer() {
           {/* Column 3 — Services */}
           <div>
             <h4 className="font-heading font-semibold text-white mb-6 text-base">
-              Services
+              {t('Services', 'Layanan')}
             </h4>
             <ul className="space-y-3">
               {serviceLinks.map((service) => (
@@ -139,7 +144,7 @@ export default function Footer() {
           {/* Column 4 — Contact */}
           <div>
             <h4 className="font-heading font-semibold text-white mb-6 text-base">
-              Contact
+              {t('Contact', 'Kontak')}
             </h4>
             <ul className="space-y-4">
               {contactInfo.map(({ icon: Icon, text }) => (
@@ -154,16 +159,15 @@ export default function Footer() {
               ))}
             </ul>
 
-            {/* Working hours */}
             <div className="mt-6 p-4 bg-white/5 border border-white/10">
               <p className="font-body text-xs text-white/40 uppercase tracking-widest mb-2">
-                Office Hours
+                {t('Office Hours', 'Jam Kantor')}
               </p>
               <p className="font-body text-sm text-white/70">
-                Monday – Friday: 08:00 – 17:00
+                {t('Monday – Friday', 'Senin – Jumat')}: 08:00 – 17:00
               </p>
               <p className="font-body text-sm text-white/70">
-                Saturday: 09:00 – 13:00
+                {t('Saturday', 'Sabtu')}: 09:00 – 13:00
               </p>
             </div>
           </div>
@@ -175,10 +179,13 @@ export default function Footer() {
         <div className="container-section py-5 flex flex-col sm:flex-row
                         justify-between items-center gap-3">
           <p className="font-body text-xs text-white/40">
-            © {currentYear} PT Batavia Asia Project. All rights reserved.
+            © {currentYear} PT Batavia Asia Project. {t('All rights reserved.', 'Hak cipta dilindungi.')}
           </p>
           <div className="flex gap-6">
-            {['Privacy Policy', 'Terms & Conditions'].map((item) => (
+            {[
+              t('Privacy Policy', 'Kebijakan Privasi'),
+              t('Terms & Conditions', 'Syarat & Ketentuan'),
+            ].map((item) => (
               <a
                 key={item}
                 href="#"

@@ -3,6 +3,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLang } from '@/contexts/LanguageContext'
 import { ZoomIn, X, ChevronLeft, ChevronRight } from 'lucide-react'
 
 interface PortfolioItem {
@@ -88,6 +89,8 @@ interface LightboxState {
 
 export default function Portfolio() {
   const [lightbox, setLightbox] = useState<LightboxState | null>(null)
+  const { lang } = useLang()
+  const t = (en: string, id: string) => lang === 'en' ? en : id
 
   const open = (item: PortfolioItem) => setLightbox({ item, imageIndex: 0 })
   const close = () => setLightbox(null)
@@ -105,14 +108,16 @@ export default function Portfolio() {
 
         {/* Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <p className="section-label mb-3">Our Portfolio</p>
+          <p className="section-label mb-3">{t('Our Portfolio', 'Portofolio Kami')}</p>
           <h2 className="section-title mb-5">
-            Projects We Are{' '}
-            <span className="text-gold">Proud Of</span>
+            {t('Projects We Are', 'Proyek yang Membuat Kami')}{' '}
+            <span className="text-gold">{t('Proud Of', 'Bangga')}</span>
           </h2>
           <p className="font-body text-gray-500 leading-relaxed">
-            Our track record speaks for itself — projects completed with the
-            highest quality and unwavering client satisfaction.
+            {t(
+              'Our track record speaks for itself — projects completed with the highest quality and unwavering client satisfaction.',
+              'Rekam jejak kami berbicara sendiri — proyek diselesaikan dengan kualitas tertinggi dan kepuasan klien yang tak tergoyahkan.'
+            )}
           </p>
         </div>
 
