@@ -64,7 +64,7 @@ export default function CompanyProfilePage() {
           <div className="relative max-w-4xl mx-auto text-center">
             <div className="flex justify-center mb-6">
               <Image
-                src="/images/BATAVIA_ASIA_PROJECT_.png"
+                src="/images/BATAVIA_ASIA_PROJECT_2.jpeg"
                 alt="PT Batavia Asia Project"
                 width={480}
                 height={200}
