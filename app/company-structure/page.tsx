@@ -159,7 +159,7 @@ function OrgCard({
         }}
       >
         {member.photo ? (
-          <Image src={member.photo} alt={member.name} width={176} height={160} className="w-full h-full object-cover object-top" />
+          <Image src={member.photo} alt={member.name} width={176} height={160} className="w-full h-full object-contain" />
         ) : (
           <Icon size={44} style={{ color: s.photoBorder }} strokeWidth={1.1} />
         )}
@@ -276,7 +276,7 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
                 alt={member.name}
                 width={144}
                 height={176}
-                className="object-cover w-full h-full"
+                className="object-contain w-full h-full"
               />
             ) : (
               <Icon size={52} style={{ color: s.photoBorder }} strokeWidth={1.1} />
