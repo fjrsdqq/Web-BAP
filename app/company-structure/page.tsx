@@ -80,7 +80,7 @@ const members: Member[] = [
     name: 'Rahmat Hidayat',
     role: 'Direktur Teknis / Operasional',
     tier: 'director',
-    photo: null,
+    photo: '/images/Company Structure/Rahmat Hidayat.jpeg',
     description:
       'Mengawasi seluruh aspek teknis dan operasional proyek-proyek PT Batavia Asia Project. Memastikan setiap proyek dikerjakan sesuai standar mutu, tepat waktu, dan efisien.',
     responsibilities: [
