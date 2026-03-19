@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { ArrowLeft, X, Building2, Wrench, Shield, Lightbulb } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 
@@ -183,8 +183,9 @@ function HoverPreview({ member, onEnter, onLeave, onClick }: {
 
   return (
     <div className="fixed inset-0 z-[150] flex items-center justify-center">
-      {/* Blur backdrop — click closes */}
+      {/* Blur backdrop — click anywhere outside closes */}
       <div className="absolute inset-0 bg-[#0f1f3d]/65 backdrop-blur-md" onClick={onLeave} />
+
 
       {/* Zoomed card — mouse enter cancels close timer, leave restarts it */}
       <div
@@ -329,19 +330,16 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
 export default function CompanyStructurePage() {
   const [selected, setSelected] = useState<Member | null>(null)
   const [hovered, setHovered]   = useState<Member | null>(null)
-  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const get = (id: string) => members.find((m) => m.id === id)!
 
-  const openPreview  = (m: Member) => { if (closeTimer.current) clearTimeout(closeTimer.current); setHovered(m) }
-  const delayClose   = ()          => { closeTimer.current = setTimeout(() => setHovered(null), 120) }
-  const cancelClose  = ()          => { if (closeTimer.current) clearTimeout(closeTimer.current) }
-  const closePreview = ()          => { if (closeTimer.current) clearTimeout(closeTimer.current); setHovered(null) }
+  const openPreview  = (m: Member) => setHovered(m)
+  const closePreview = ()          => setHovered(null)
 
   const cardProps = (id: string) => ({
     member: get(id),
     onHover: openPreview,
-    onLeave: delayClose,
-    onClick: (m: Member) => { closePreview(); setSelected(m) },
+    onLeave: () => {},           // mouse leave does NOT close
+    onClick: (m: Member) => setHovered(m), // click card switches preview
   })
 
   return (
@@ -440,8 +438,8 @@ export default function CompanyStructurePage() {
       {hovered && !selected && (
         <HoverPreview
           member={hovered}
-          onEnter={cancelClose}
-          onLeave={closePreview}
+          onEnter={() => {}}
+          onLeave={() => {}}
           onClick={() => { closePreview(); setSelected(hovered) }}
         />
       )}
