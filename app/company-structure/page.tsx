@@ -149,24 +149,23 @@ function OrgCard({
       className="org-card flex flex-col items-center text-center cursor-pointer"
       style={{ background: s.cardBg }}
     >
-      <div className="w-full h-1" style={{ background: s.photoBorder }} />
-      <div className="mt-6 mb-4 relative">
-        <div
-          className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center"
-          style={{
-            border: `3px solid ${s.photoBorder}`,
-            background: isAdvisor ? 'rgba(15,31,61,0.08)' : 'rgba(201,168,76,0.12)',
-            boxShadow: `0 0 0 6px ${s.photoBorder}20`,
-          }}
-        >
-          {member.photo ? (
-            <Image src={member.photo} alt={member.name} width={96} height={96} className="object-cover w-full h-full" />
-          ) : (
-            <Icon size={36} style={{ color: s.photoBorder }} strokeWidth={1.2} />
-          )}
-        </div>
-        <span className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-white" style={{ background: '#c9a84c' }} />
+      {/* Full-width portrait photo — no crop */}
+      <div
+        className="w-full overflow-hidden flex items-center justify-center"
+        style={{
+          height: 160,
+          borderBottom: `2px solid ${s.photoBorder}`,
+          background: isAdvisor ? 'rgba(15,31,61,0.06)' : 'rgba(201,168,76,0.08)',
+        }}
+      >
+        {member.photo ? (
+          <Image src={member.photo} alt={member.name} width={176} height={160} className="w-full h-full object-cover object-top" />
+        ) : (
+          <Icon size={44} style={{ color: s.photoBorder }} strokeWidth={1.1} />
+        )}
       </div>
+      {/* Gold accent line */}
+      <div className="w-8 h-0.5 mt-4 mb-2" style={{ background: s.photoBorder }} />
       <p className={`font-heading font-bold text-sm leading-tight px-4 mb-2 ${s.nameCls}`}>{member.name}</p>
       <span className="text-[10px] font-bold tracking-wide px-3 py-1 mb-5" style={{ background: s.badge.bg, color: s.badge.text }}>
         {member.role}
@@ -200,28 +199,24 @@ function HoverPreview({ member, onClose, onClick }: { member: Member; onClose: (
         }}
         onClick={onClick}
       >
-        {/* Top bar */}
-        <div className="w-full h-1.5" style={{ background: s.photoBorder }} />
-
-        {/* Photo — large portrait */}
-        <div className="mt-8 mb-5 relative">
-          <div
-            className="w-44 h-44 rounded-full overflow-hidden flex items-center justify-center"
-            style={{
-              border: `4px solid ${s.photoBorder}`,
-              background: 'rgba(201,168,76,0.12)',
-              boxShadow: `0 0 0 10px ${s.photoBorder}25, 0 8px 32px rgba(0,0,0,0.3)`,
-            }}
-          >
-            {member.photo ? (
-              <Image src={member.photo} alt={member.name} width={176} height={176} className="object-cover w-full h-full" />
-            ) : (
-              <Icon size={64} style={{ color: s.photoBorder }} strokeWidth={1.1} />
-            )}
-          </div>
-          <span className="absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white" style={{ background: '#c9a84c' }} />
+        {/* Full-width portrait photo */}
+        <div
+          className="w-full overflow-hidden flex items-center justify-center"
+          style={{
+            height: 280,
+            borderBottom: `3px solid ${s.photoBorder}`,
+            background: 'rgba(201,168,76,0.08)',
+          }}
+        >
+          {member.photo ? (
+            <Image src={member.photo} alt={member.name} width={320} height={280} className="w-full h-full object-cover object-top" />
+          ) : (
+            <Icon size={80} style={{ color: s.photoBorder }} strokeWidth={1.0} />
+          )}
         </div>
 
+        {/* Gold accent */}
+        <div className="w-10 h-0.5 mt-6 mb-3" style={{ background: s.photoBorder }} />
         <p className={`font-heading font-bold text-xl leading-tight px-6 mb-3 ${s.nameCls}`}>{member.name}</p>
         <span className="text-xs font-bold tracking-wide px-4 py-1.5 mb-4" style={{ background: s.badge.bg, color: s.badge.text }}>
           {member.role}
