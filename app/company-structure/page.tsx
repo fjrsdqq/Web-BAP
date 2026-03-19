@@ -20,74 +20,74 @@ const members: Member[] = [
   {
     id: 'achmad',
     name: 'Achmad Chaerudin',
-    role: 'Komisaris',
+    role: 'Commissioner',
     tier: 'komisaris',
     photo: '/images/Company Structure/Achmad Chaerudin.jpeg',
     description:
-      'Menjalankan fungsi pengawasan terhadap kebijakan direksi dan jalannya kegiatan usaha PT Batavia Asia Project untuk kepentingan perusahaan dan seluruh pemangku kepentingan.',
+      'Performs an oversight function over the board of directors\u2019 policies and the conduct of business activities at PT Batavia Asia Project, acting in the best interests of the company and all its stakeholders.',
     responsibilities: [
-      'Mengawasi pelaksanaan kebijakan dan keputusan Direksi',
-      'Memberikan nasihat strategis kepada Direksi',
-      'Memastikan kepatuhan perusahaan terhadap regulasi dan hukum yang berlaku',
-      'Menjaga kepentingan seluruh pemegang saham',
+      'Supervising the implementation of Board of Directors policies and decisions',
+      'Providing strategic advice to the Board of Directors',
+      'Ensuring company compliance with applicable regulations and laws',
+      'Safeguarding the interests of all shareholders',
     ],
   },
   {
     id: 'hammam',
     name: 'Hammam Rhofi',
-    role: 'President Direktur',
+    role: 'President Director',
     tier: 'president',
     photo: null,
     description:
-      'Memimpin PT Batavia Asia Project dengan visi membangun infrastruktur dan properti berkualitas tinggi di Indonesia. Bertanggung jawab penuh atas arah strategis dan kebijakan perusahaan.',
+      'Leads PT Batavia Asia Project with a vision to build high-quality infrastructure and property across Indonesia. Holds full responsibility for the company\u2019s strategic direction and policies.',
     responsibilities: [
-      'Menetapkan visi, misi, dan strategi jangka panjang perusahaan',
-      'Memimpin seluruh jajaran manajemen dan operasional',
-      'Mewakili perusahaan dalam hubungan dengan klien strategis dan mitra utama',
-      'Memastikan tata kelola perusahaan berjalan sesuai prinsip GCG',
+      'Setting the company\u2019s long-term vision, mission, and strategy',
+      'Leading all levels of management and operations',
+      'Representing the company in relationships with strategic clients and key partners',
+      'Ensuring corporate governance adheres to Good Corporate Governance (GCG) principles',
     ],
   },
   {
     id: 'ferrial',
     name: 'Ferrial Sunaryo',
-    role: 'Penasihat',
+    role: 'Advisor',
     tier: 'advisor',
     photo: '/images/Company Structure/Ferrial Sunaryo.jpeg',
     description:
-      'Memberikan masukan dan arahan strategis kepada manajemen PT Batavia Asia Project berdasarkan keahlian dan pengalamannya di industri konstruksi dan properti.',
+      'Provides strategic input and guidance to PT Batavia Asia Project\u2019s management, drawing on expertise and experience in the construction and property industry.',
     responsibilities: [
-      'Memberikan saran strategis dalam pengembangan bisnis',
-      'Mendukung jaringan kemitraan dan relasi industri',
-      'Memberikan masukan dalam pengambilan keputusan strategis',
+      'Providing strategic advice on business development',
+      'Supporting partnership networks and industry relations',
+      'Contributing insights to strategic decision-making',
     ],
   },
   {
     id: 'hendri',
     name: 'Hendri Arifin',
-    role: 'Penasihat',
+    role: 'Advisor',
     tier: 'advisor',
     photo: '/images/Company Structure/Hendri Arifin.jpeg',
     description:
-      'Berkontribusi dalam memberikan pandangan strategis dan rekomendasi kepada manajemen PT Batavia Asia Project untuk mendukung pertumbuhan perusahaan yang berkelanjutan.',
+      'Contributes strategic perspectives and recommendations to PT Batavia Asia Project\u2019s management in support of the company\u2019s sustainable growth.',
     responsibilities: [
-      'Memberikan saran strategis dalam pengembangan bisnis',
-      'Mendukung jaringan kemitraan dan relasi industri',
-      'Memberikan masukan dalam pengambilan keputusan strategis',
+      'Providing strategic advice on business development',
+      'Supporting partnership networks and industry relations',
+      'Contributing insights to strategic decision-making',
     ],
   },
   {
     id: 'rahmat',
     name: 'Rahmat Hidayat',
-    role: 'Direktur Teknis / Operasional',
+    role: 'Technical / Operational Director',
     tier: 'director',
     photo: '/images/Company Structure/Rahmat Hidayat.jpeg',
     description:
-      'Mengawasi seluruh aspek teknis dan operasional proyek-proyek PT Batavia Asia Project. Memastikan setiap proyek dikerjakan sesuai standar mutu, tepat waktu, dan efisien.',
+      'Oversees all technical and operational aspects of PT Batavia Asia Project\u2019s projects. Ensures every project is executed to quality standards, on time, and with efficiency.',
     responsibilities: [
-      'Mengawasi perencanaan dan pelaksanaan seluruh proyek konstruksi',
-      'Mengelola tim teknis, engineer, dan tenaga lapangan',
-      'Memastikan penerapan standar mutu dan keselamatan kerja (K3)',
-      'Mengkoordinasikan pengadaan material dan manajemen vendor',
+      'Overseeing the planning and execution of all construction projects',
+      'Managing technical teams, engineers, and field personnel',
+      'Ensuring compliance with quality standards and Occupational Health & Safety (OHS) regulations',
+      'Coordinating material procurement and vendor management',
     ],
   },
 ]
@@ -206,7 +206,7 @@ function HoverPreview({ member, onEnter, onLeave, onClick }: {
           onClick={(e) => { e.stopPropagation(); onLeave() }}
           className="absolute top-3 right-3 z-20 w-8 h-8 flex items-center justify-center
                      bg-black/40 hover:bg-black/70 transition-colors"
-          aria-label="Tutup"
+          aria-label="Close"
         >
           <X size={14} className="text-white" />
         </button>
@@ -243,7 +243,7 @@ function HoverPreview({ member, onEnter, onLeave, onClick }: {
         </span>
         <div className="w-full py-2.5 text-[10px] font-semibold tracking-widest uppercase border-t"
              style={{ borderColor: `${s.photoBorder}30`, color: s.photoBorder, background: `${s.photoBorder}12` }}>
-          Klik untuk lihat profil →
+          Click to view profile →
         </div>
       </div>
     </div>
@@ -308,7 +308,7 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
             <p className="text-gray-500 text-sm leading-relaxed mb-6">{member.description}</p>
             <div className="flex items-center gap-2 mb-3">
               <span className="w-5 h-0.5 inline-block" style={{ background: '#c9a84c' }} />
-              <p className="font-heading font-bold text-sm text-[#0f1f3d]">Tanggung Jawab</p>
+              <p className="font-heading font-bold text-sm text-[#0f1f3d]">Responsibilities</p>
             </div>
             <ul className="space-y-3">
               {member.responsibilities.map((r, i) => (
@@ -328,7 +328,7 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
               onClick={onClose}
               className="text-xs text-gray-400 hover:text-[#0f1f3d] transition-colors"
             >
-              Tutup ✕
+              Close ✕
             </button>
           </div>
         </div>
@@ -371,9 +371,9 @@ export default function CompanyStructurePage() {
           <div className="relative max-w-3xl mx-auto text-center">
 
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">
-              Struktur <span className="text-gold">Organisasi</span>
+              Organizational <span className="text-gold">Structure</span>
             </h1>
-            <p className="text-white/50 text-sm">Klik kartu untuk melihat profil lengkap</p>
+            <p className="text-white/50 text-sm">Click a card to view the full profile</p>
           </div>
         </div>
 
@@ -423,10 +423,10 @@ export default function CompanyStructurePage() {
         {/* Legend */}
         <div className="flex flex-wrap justify-center gap-8 pb-12">
           {[
-            { label: 'Komisaris',          bg: '#1a2a4a' },
-            { label: 'President Direktur', bg: '#0f1f3d' },
-            { label: 'Penasihat',          bg: '#ffffff', border: '2px solid #0f1f3d' },
-            { label: 'Direktur Teknis',    bg: '#1e3160' },
+            { label: 'Commissioner',          bg: '#1a2a4a' },
+            { label: 'President Director',    bg: '#0f1f3d' },
+            { label: 'Advisor',               bg: '#ffffff', border: '2px solid #0f1f3d' },
+            { label: 'Technical Director',    bg: '#1e3160' },
           ].map((l) => (
             <div key={l.label} className="flex items-center gap-2.5">
               <div className="w-4 h-4 rounded-sm" style={{ background: l.bg, border: l.border ?? 'none' }} />
@@ -435,7 +435,7 @@ export default function CompanyStructurePage() {
           ))}
           <div className="flex items-center gap-2.5">
             <div className="w-8 h-0 border-t-2 border-dashed border-gray-400" />
-            <span className="text-xs text-gray-500 font-medium">Hubungan Penasihat</span>
+            <span className="text-xs text-gray-500 font-medium">Advisory Relationship</span>
           </div>
         </div>
 
@@ -447,7 +447,7 @@ export default function CompanyStructurePage() {
                        px-8 py-3 text-sm font-semibold hover:bg-[#0f1f3d] hover:text-white
                        transition-all duration-200"
           >
-            <ArrowLeft size={16} /> Kembali ke Beranda
+            <ArrowLeft size={16} /> Back to Home
           </Link>
         </div>
       </div>
