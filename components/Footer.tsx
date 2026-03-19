@@ -24,11 +24,11 @@ export default function Footer() {
   const t = (en: string, id: string) => lang === 'en' ? en : id
 
   const navLinks = [
-    { label: t('Home', 'Beranda'), href: '#hero' },
-    { label: t('Our Services', 'Layanan Kami'), href: '#layanan' },
-    { label: t('Portfolio', 'Portfolio'), href: '#portfolio' },
-    { label: t('Why Us', 'Mengapa Kami'), href: '#keunggulan' },
-    { label: t('Contact', 'Kontak'), href: '#kontak' },
+    { label: t('Home', 'Beranda'), href: '/#hero' },
+    { label: t('Our Services', 'Layanan Kami'), href: '/#layanan' },
+    { label: t('Portfolio', 'Portfolio'), href: '/#portfolio' },
+    { label: t('Why Us', 'Mengapa Kami'), href: '/#keunggulan' },
+    { label: t('Contact', 'Kontak'), href: '/#kontak' },
   ]
 
   const serviceLinks = [
@@ -47,22 +47,14 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center mb-6">
               <Image
-                src="/images/LOGO.png"
-                alt="Batavia Asia Project"
-                width={100}
-                height={100}
-                className="object-contain brightness-0 invert"
+                src="/images/BATAVIA_ASIA_PROJECT_2.jpeg"
+                alt="PT Batavia Asia Project"
+                width={200}
+                height={80}
+                className="object-contain"
               />
-              <div className="leading-tight">
-                <div className="font-heading font-bold text-white tracking-wide">
-                  BATAVIA ASIA
-                </div>
-                <div className="font-body text-white/50 text-xs tracking-[0.15em] uppercase">
-                  Project
-                </div>
-              </div>
             </div>
 
             <p className="font-body text-white/55 text-sm leading-relaxed mb-6">

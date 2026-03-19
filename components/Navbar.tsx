@@ -30,18 +30,18 @@ export default function Navbar() {
   ]
 
   const serviceItems = [
-    { label: t('Building Construction', 'Konstruksi Gedung'), href: '#layanan', tab: 'building', icon: Building2 },
-    { label: t('MEP & Building Systems', 'MEP & Sistem Bangunan'), href: '#layanan', tab: 'mep', icon: Zap },
-    { label: t('Finishing & Interior Works', 'Finishing & Interior'), href: '#layanan', tab: 'finishing', icon: PaintBucket },
-    { label: t('Repair & Maintenance', 'Perbaikan & Perawatan'), href: '#layanan', tab: 'repair', icon: Wrench },
-    { label: t('Civil & Road Works', 'Pekerjaan Sipil & Jalan'), href: '#layanan', tab: 'building', icon: Layers },
+    { label: t('Building Construction', 'Konstruksi Gedung'), href: '/#layanan', tab: 'building', icon: Building2 },
+    { label: t('MEP & Building Systems', 'MEP & Sistem Bangunan'), href: '/#layanan', tab: 'mep', icon: Zap },
+    { label: t('Finishing & Interior Works', 'Finishing & Interior'), href: '/#layanan', tab: 'finishing', icon: PaintBucket },
+    { label: t('Repair & Maintenance', 'Perbaikan & Perawatan'), href: '/#layanan', tab: 'repair', icon: Wrench },
+    { label: t('Civil & Road Works', 'Pekerjaan Sipil & Jalan'), href: '/#layanan', tab: 'building', icon: Layers },
   ]
 
   const simpleLinks = [
-    { label: t('Portfolio', 'Portfolio'), href: '#portfolio' },
-    { label: t('Why Us', 'Mengapa Kami'), href: '#keunggulan' },
-    { label: t('Career', 'Karir'), href: '#career' },
-    { label: t('Contact', 'Kontak'), href: '#kontak' },
+    { label: t('Portfolio', 'Portfolio'), href: '/#portfolio' },
+    { label: t('Why Us', 'Mengapa Kami'), href: '/#keunggulan' },
+    { label: t('Career', 'Karir'), href: '/#career' },
+    { label: t('Contact', 'Kontak'), href: '/#kontak' },
   ]
 
   useEffect(() => {
