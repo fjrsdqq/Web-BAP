@@ -69,13 +69,20 @@ export default function CompanyProfilePage() {
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
 
           <div className="relative max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 px-4 py-1.5 mb-6">
+            <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 px-4 py-1.5 mb-8">
               <Building2 size={13} className="text-gold" />
               <span className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase">Company Profile</span>
             </div>
-            <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight">
-              PT Batavia Asia <span className="text-gold">Project</span>
-            </h1>
+            <div className="flex justify-center mb-6">
+              <Image
+                src="/images/BATAVIA_ASIA_PROJECT_.png"
+                alt="PT Batavia Asia Project"
+                width={480}
+                height={200}
+                className="object-contain transition-transform duration-300 ease-out hover:scale-110 cursor-pointer"
+                priority
+              />
+            </div>
             <p className="text-white/55 text-base max-w-2xl mx-auto leading-relaxed">
               Kontraktor dan developer profesional yang berkomitmen menghadirkan konstruksi
               berkualitas tinggi dengan integritas dan inovasi di setiap proyeknya.
