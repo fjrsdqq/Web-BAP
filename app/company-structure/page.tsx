@@ -125,21 +125,31 @@ const tierStyle = {
 
 const TierIcon = { komisaris: Shield, president: Building2, advisor: Lightbulb, director: Wrench }
 
-function OrgCard({ member, onClick }: { member: Member; onClick: () => void }) {
+/* Small org card (in chart) — hover triggers zoom overlay */
+function OrgCard({
+  member,
+  onHover,
+  onLeave,
+  onClick,
+}: {
+  member: Member
+  onHover: (m: Member) => void
+  onLeave: () => void
+  onClick: (m: Member) => void
+}) {
   const s = tierStyle[member.tier]
   const Icon = TierIcon[member.tier]
   const isAdvisor = member.tier === 'advisor'
 
   return (
     <button
-      onClick={onClick}
-      className="org-card group flex flex-col items-center text-center cursor-pointer"
+      onMouseEnter={() => onHover(member)}
+      onMouseLeave={onLeave}
+      onClick={() => onClick(member)}
+      className="org-card flex flex-col items-center text-center cursor-pointer"
       style={{ background: s.cardBg }}
     >
-      {/* Top accent bar */}
       <div className="w-full h-1" style={{ background: s.photoBorder }} />
-
-      {/* Photo */}
       <div className="mt-6 mb-4 relative">
         <div
           className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center"
@@ -150,51 +160,82 @@ function OrgCard({ member, onClick }: { member: Member; onClick: () => void }) {
           }}
         >
           {member.photo ? (
-            <Image
-              src={member.photo}
-              alt={member.name}
-              width={96}
-              height={96}
-              className="object-cover w-full h-full"
-            />
+            <Image src={member.photo} alt={member.name} width={96} height={96} className="object-cover w-full h-full" />
           ) : (
             <Icon size={36} style={{ color: s.photoBorder }} strokeWidth={1.2} />
           )}
         </div>
-        {/* Online dot */}
-        <span
-          className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-white"
-          style={{ background: '#c9a84c' }}
-        />
+        <span className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-white" style={{ background: '#c9a84c' }} />
       </div>
-
-      {/* Name */}
-      <p className={`font-heading font-bold text-sm leading-tight px-4 mb-2 ${s.nameCls}`}>
-        {member.name}
-      </p>
-
-      {/* Role badge */}
-      <span
-        className="text-[10px] font-bold tracking-wide px-3 py-1 mb-5"
-        style={{ background: s.badge.bg, color: s.badge.text }}
-      >
+      <p className={`font-heading font-bold text-sm leading-tight px-4 mb-2 ${s.nameCls}`}>{member.name}</p>
+      <span className="text-[10px] font-bold tracking-wide px-3 py-1 mb-5" style={{ background: s.badge.bg, color: s.badge.text }}>
         {member.role}
       </span>
-
-      {/* Hover hint */}
-      <div
-        className="w-full py-2 text-[10px] font-semibold tracking-widest uppercase
-                   opacity-0 group-hover:opacity-100 transition-opacity duration-200
-                   border-t"
-        style={{
-          borderColor: `${s.photoBorder}30`,
-          color: s.photoBorder,
-          background: `${s.photoBorder}10`,
-        }}
-      >
-        Lihat Profil →
-      </div>
     </button>
+  )
+}
+
+/* Zoom preview overlay shown on hover */
+function HoverPreview({ member, onClose, onClick }: { member: Member; onClose: () => void; onClick: () => void }) {
+  const s = tierStyle[member.tier]
+  const Icon = TierIcon[member.tier]
+
+  return (
+    <div
+      className="fixed inset-0 z-[150] flex items-center justify-center"
+      onMouseLeave={onClose}
+    >
+      {/* Blur backdrop */}
+      <div className="absolute inset-0 bg-[#0f1f3d]/60 backdrop-blur-md" onClick={onClose} />
+
+      {/* Zoomed card */}
+      <div
+        className="relative flex flex-col items-center text-center overflow-hidden cursor-pointer"
+        style={{
+          background: s.cardBg,
+          width: 320,
+          borderRadius: 2,
+          boxShadow: `0 32px 80px rgba(0,0,0,0.5), 0 0 0 2px ${s.photoBorder}`,
+          animation: 'zoomIn .2s ease-out both',
+        }}
+        onClick={onClick}
+      >
+        {/* Top bar */}
+        <div className="w-full h-1.5" style={{ background: s.photoBorder }} />
+
+        {/* Photo — large portrait */}
+        <div className="mt-8 mb-5 relative">
+          <div
+            className="w-44 h-44 rounded-full overflow-hidden flex items-center justify-center"
+            style={{
+              border: `4px solid ${s.photoBorder}`,
+              background: 'rgba(201,168,76,0.12)',
+              boxShadow: `0 0 0 10px ${s.photoBorder}25, 0 8px 32px rgba(0,0,0,0.3)`,
+            }}
+          >
+            {member.photo ? (
+              <Image src={member.photo} alt={member.name} width={176} height={176} className="object-cover w-full h-full" />
+            ) : (
+              <Icon size={64} style={{ color: s.photoBorder }} strokeWidth={1.1} />
+            )}
+          </div>
+          <span className="absolute bottom-2 right-2 w-5 h-5 rounded-full border-2 border-white" style={{ background: '#c9a84c' }} />
+        </div>
+
+        <p className={`font-heading font-bold text-xl leading-tight px-6 mb-3 ${s.nameCls}`}>{member.name}</p>
+        <span className="text-xs font-bold tracking-wide px-4 py-1.5 mb-4" style={{ background: s.badge.bg, color: s.badge.text }}>
+          {member.role}
+        </span>
+
+        {/* Click hint */}
+        <div
+          className="w-full py-3 text-xs font-semibold tracking-widest uppercase border-t"
+          style={{ borderColor: `${s.photoBorder}30`, color: s.photoBorder, background: `${s.photoBorder}15` }}
+        >
+          Klik untuk lihat profil →
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -287,7 +328,15 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
 
 export default function CompanyStructurePage() {
   const [selected, setSelected] = useState<Member | null>(null)
+  const [hovered, setHovered] = useState<Member | null>(null)
   const get = (id: string) => members.find((m) => m.id === id)!
+
+  const cardProps = (id: string) => ({
+    member: get(id),
+    onHover: (m: Member) => setHovered(m),
+    onLeave: () => setHovered(null),
+    onClick: (m: Member) => { setHovered(null); setSelected(m) },
+  })
 
   return (
     <>
@@ -313,7 +362,7 @@ export default function CompanyStructurePage() {
           <div style={{ display:'flex', flexDirection:'column', alignItems:'center', minWidth:760 }}>
 
             {/* Row 1 — Komisaris */}
-            <OrgCard member={get('achmad')} onClick={() => setSelected(get('achmad'))} />
+            <OrgCard {...cardProps('achmad')} />
 
             {/* Solid line down from Komisaris */}
             <div style={{ width:2, height:48, background:'#c9a84c' }} />
@@ -335,9 +384,9 @@ export default function CompanyStructurePage() {
 
               {/* Three cards */}
               <div style={{ display:'flex', gap:80, alignItems:'flex-start' }}>
-                <OrgCard member={get('ferrial')} onClick={() => setSelected(get('ferrial'))} />
-                <OrgCard member={get('hammam')} onClick={() => setSelected(get('hammam'))} />
-                <OrgCard member={get('hendri')} onClick={() => setSelected(get('hendri'))} />
+                <OrgCard {...cardProps('ferrial')} />
+                <OrgCard {...cardProps('hammam')} />
+                <OrgCard {...cardProps('hendri')} />
               </div>
             </div>
 
@@ -345,7 +394,7 @@ export default function CompanyStructurePage() {
             <div style={{ width:2, height:48, background:'#c9a84c' }} />
 
             {/* Row 3 — Director */}
-            <OrgCard member={get('rahmat')} onClick={() => setSelected(get('rahmat'))} />
+            <OrgCard {...cardProps('rahmat')} />
 
           </div>
         </div>
@@ -382,6 +431,13 @@ export default function CompanyStructurePage() {
         </div>
       </div>
 
+      {hovered && !selected && (
+        <HoverPreview
+          member={hovered}
+          onClose={() => setHovered(null)}
+          onClick={() => { setSelected(hovered); setHovered(null) }}
+        />
+      )}
       {selected && <ProfileModal member={selected} onClose={() => setSelected(null)} />}
 
       <style jsx global>{`
@@ -396,8 +452,13 @@ export default function CompanyStructurePage() {
           z-index: 10;
         }
         .org-card:hover {
-          transform: scale(1.5);
-          box-shadow: 0 20px 60px rgba(201,168,76,0.4), 0 4px 20px rgba(15,31,61,0.25);
+          box-shadow: 0 8px 32px rgba(201,168,76,0.35);
+        }
+
+        /* Hover zoom animation */
+        @keyframes zoomIn {
+          from { opacity: 0; transform: scale(0.7); }
+          to   { opacity: 1; transform: scale(1); }
         }
 
         /* Modal animation */
