@@ -140,46 +140,55 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" onClick={onClose}>
       <div className="absolute inset-0 bg-[#0f1f3d]/75 backdrop-blur-sm" />
       <div
-        className="relative bg-white max-w-lg w-full shadow-2xl overflow-hidden rounded-sm"
-        style={{ animation: 'modalIn .22s ease-out both' }}
+        className="relative bg-white max-w-2xl w-full shadow-2xl overflow-hidden rounded-sm flex"
+        style={{ animation: 'modalIn .22s ease-out both', minHeight: 340 }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="px-8 py-6 flex items-center gap-5" style={{ background: c.bg }}>
-          <div className="w-20 h-20 rounded-full overflow-hidden shrink-0 flex items-center justify-center"
+        {/* LEFT — Photo panel */}
+        <div className="w-48 shrink-0 flex flex-col items-center justify-center py-8 px-4 gap-4"
+             style={{ background: c.bg }}>
+          <div className="w-32 h-40 overflow-hidden flex items-center justify-center"
                style={{ border: `2px solid ${c.border}`, background: 'rgba(201,168,76,0.15)' }}>
             {member.photo
-              ? <Image src={member.photo} alt={member.name} width={80} height={80} className="object-cover w-full h-full" />
-              : <Icon size={32} style={{ color: c.border }} strokeWidth={1.5} />
+              ? <Image src={member.photo} alt={member.name} width={128} height={160} className="object-cover w-full h-full" />
+              : <Icon size={48} style={{ color: c.border }} strokeWidth={1.2} />
             }
           </div>
-          <div>
-            <p className="font-heading font-bold text-white text-xl leading-tight">{member.name}</p>
-            <span className="inline-block text-xs font-bold px-3 py-1 mt-2 rounded-sm"
+          <div className="text-center">
+            <p className="font-heading font-bold text-white text-sm leading-tight mb-2">{member.name}</p>
+            <span className="inline-block text-[10px] font-bold px-2.5 py-1 rounded-sm"
                   style={{ background: c.border, color: c.badgeText }}>
               {member.role}
             </span>
           </div>
-          <button onClick={onClose} className="absolute top-4 right-4 text-white/50 hover:text-white transition-colors">
-            <X size={20} />
+        </div>
+
+        {/* RIGHT — Details */}
+        <div className="flex flex-col flex-1 overflow-y-auto">
+          {/* close btn */}
+          <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-navy transition-colors">
+            <X size={18} />
           </button>
-        </div>
-        <div className="px-8 py-6">
-          <p className="text-gray-500 text-sm leading-relaxed mb-6">{member.description}</p>
-          <div className="flex items-center gap-2 mb-3">
-            <span className="w-4 h-0.5 bg-gold inline-block" style={{ background: '#c9a84c' }} />
-            <p className="font-heading font-bold text-navy text-sm">Tanggung Jawab</p>
+
+          <div className="px-7 pt-7 pb-4 flex-1">
+            <p className="text-gray-500 text-sm leading-relaxed mb-5">{member.description}</p>
+            <div className="flex items-center gap-2 mb-3">
+              <span className="w-4 h-0.5 inline-block" style={{ background: '#c9a84c' }} />
+              <p className="font-heading font-bold text-sm" style={{ color: '#0f1f3d' }}>Tanggung Jawab</p>
+            </div>
+            <ul className="space-y-2.5">
+              {member.responsibilities.map((r, i) => (
+                <li key={i} className="flex items-start gap-2.5 text-sm text-gray-500">
+                  <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#c9a84c' }} />
+                  {r}
+                </li>
+              ))}
+            </ul>
           </div>
-          <ul className="space-y-2">
-            {member.responsibilities.map((r, i) => (
-              <li key={i} className="flex items-start gap-2.5 text-sm text-gray-500">
-                <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#c9a84c' }} />
-                {r}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="px-8 pb-5 text-right border-t border-gray-100 pt-4">
-          <button onClick={onClose} className="text-xs text-gray-400 hover:text-navy transition-colors">Tutup ✕</button>
+
+          <div className="px-7 pb-4 pt-3 text-right border-t border-gray-100">
+            <button onClick={onClose} className="text-xs text-gray-400 hover:text-navy transition-colors">Tutup ✕</button>
+          </div>
         </div>
       </div>
     </div>
