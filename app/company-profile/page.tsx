@@ -70,10 +70,6 @@ export default function CompanyProfilePage() {
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
 
           <div className="relative max-w-4xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 px-4 py-1.5 mb-8">
-              <Building2 size={13} className="text-gold" />
-              <span className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase">Company Profile</span>
-            </div>
             <div className="flex justify-center mb-6">
               <Image
                 src="/images/BATAVIA_ASIA_PROJECT_.png"
