@@ -129,15 +129,11 @@ export default function HeroSection() {
               </a>
             </motion.div>
 
-            {/* Stats mini */}
+            {/* Stats mini — Website Visitors only */}
             <motion.div
               {...fadeUp(0.85)}
               className="flex gap-8 mt-10 pt-8 border-t border-white/20"
             >
-              <div>
-                <div className="font-heading text-2xl font-bold text-gold">3</div>
-                <div className="font-body text-white/60 text-xs mt-0.5">Projects Completed</div>
-              </div>
               <div>
                 <div className="font-heading text-2xl font-bold text-gold">
                   {visitorCount !== null ? visitorCount.toLocaleString() : '—'}
