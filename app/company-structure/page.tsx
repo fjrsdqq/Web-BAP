@@ -78,7 +78,7 @@ const members: Member[] = [
   {
     id: 'rahmat',
     name: 'Rahmat Hidayat',
-    role: 'Direktur Teknis/Operasional',
+    role: 'Direktur Teknis / Operasional',
     tier: 'director',
     photo: null,
     description:
@@ -92,102 +92,192 @@ const members: Member[] = [
   },
 ]
 
-const cardCfg = {
-  komisaris: { bg: '#1a2a4a', text: '#fff',     border: '#c9a84c', badgeBg: '#c9a84c', badgeText: '#1a2a4a' },
-  president: { bg: '#0f1f3d', text: '#fff',     border: '#c9a84c', badgeBg: '#c9a84c', badgeText: '#0f1f3d' },
-  advisor:   { bg: '#ffffff', text: '#0f1f3d',  border: '#0f1f3d', badgeBg: '#e8e4da', badgeText: '#0f1f3d' },
-  director:  { bg: '#1e3160', text: '#fff',     border: '#c9a84c', badgeBg: 'rgba(255,255,255,0.15)', badgeText: '#fff' },
+const tierStyle = {
+  komisaris: {
+    cardBg: 'linear-gradient(145deg, #1a2a4a 0%, #0f1f3d 100%)',
+    photoBorder: '#c9a84c',
+    badge: { bg: '#c9a84c', text: '#0f1f3d' },
+    nameCls: 'text-white',
+    subtitleCls: 'text-white/60',
+  },
+  president: {
+    cardBg: 'linear-gradient(145deg, #0f1f3d 0%, #091530 100%)',
+    photoBorder: '#c9a84c',
+    badge: { bg: '#c9a84c', text: '#0f1f3d' },
+    nameCls: 'text-white',
+    subtitleCls: 'text-white/60',
+  },
+  advisor: {
+    cardBg: 'linear-gradient(145deg, #ffffff 0%, #f5f3ef 100%)',
+    photoBorder: '#0f1f3d',
+    badge: { bg: '#0f1f3d', text: '#ffffff' },
+    nameCls: 'text-[#0f1f3d]',
+    subtitleCls: 'text-gray-400',
+  },
+  director: {
+    cardBg: 'linear-gradient(145deg, #1e3160 0%, #152548 100%)',
+    photoBorder: '#c9a84c',
+    badge: { bg: '#c9a84c', text: '#0f1f3d' },
+    nameCls: 'text-white',
+    subtitleCls: 'text-white/60',
+  },
 }
+
 const TierIcon = { komisaris: Shield, president: Building2, advisor: Lightbulb, director: Wrench }
 
 function OrgCard({ member, onClick }: { member: Member; onClick: () => void }) {
-  const c = cardCfg[member.tier]
+  const s = tierStyle[member.tier]
   const Icon = TierIcon[member.tier]
+  const isAdvisor = member.tier === 'advisor'
+
   return (
     <button
       onClick={onClick}
-      title="Lihat profil"
-      style={{ background: c.bg, color: c.text, borderColor: c.border }}
-      className="group relative flex flex-col items-center text-center px-5 py-5 w-40 border-2
-                 hover:scale-150 hover:shadow-[0_8px_30px_rgba(201,168,76,0.35)] hover:-translate-y-1
-                 transition-all duration-200 ease-out rounded-sm cursor-pointer z-10"
+      className="org-card group flex flex-col items-center text-center cursor-pointer"
+      style={{ background: s.cardBg }}
     >
-      {/* Avatar */}
-      <div className="w-14 h-14 rounded-full overflow-hidden mb-3 flex items-center justify-center"
-           style={{ background: 'rgba(201,168,76,0.15)', border: `2px solid ${c.border}` }}>
-        {member.photo
-          ? <Image src={member.photo} alt={member.name} width={56} height={56} className="object-cover w-full h-full" />
-          : <Icon size={22} style={{ color: c.border }} strokeWidth={1.5} />
-        }
+      {/* Top accent bar */}
+      <div className="w-full h-1" style={{ background: s.photoBorder }} />
+
+      {/* Photo */}
+      <div className="mt-6 mb-4 relative">
+        <div
+          className="w-24 h-24 rounded-full overflow-hidden flex items-center justify-center"
+          style={{
+            border: `3px solid ${s.photoBorder}`,
+            background: isAdvisor ? 'rgba(15,31,61,0.08)' : 'rgba(201,168,76,0.12)',
+            boxShadow: `0 0 0 6px ${s.photoBorder}20`,
+          }}
+        >
+          {member.photo ? (
+            <Image
+              src={member.photo}
+              alt={member.name}
+              width={96}
+              height={96}
+              className="object-cover w-full h-full"
+            />
+          ) : (
+            <Icon size={36} style={{ color: s.photoBorder }} strokeWidth={1.2} />
+          )}
+        </div>
+        {/* Online dot */}
+        <span
+          className="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full border-2 border-white"
+          style={{ background: '#c9a84c' }}
+        />
       </div>
-      <p className="font-heading font-bold text-xs leading-tight mb-2">{member.name}</p>
-      <span className="text-[9px] font-bold px-2 py-0.5 rounded-sm"
-            style={{ background: c.badgeBg, color: c.badgeText }}>
+
+      {/* Name */}
+      <p className={`font-heading font-bold text-sm leading-tight px-4 mb-2 ${s.nameCls}`}>
+        {member.name}
+      </p>
+
+      {/* Role badge */}
+      <span
+        className="text-[10px] font-bold tracking-wide px-3 py-1 mb-5"
+        style={{ background: s.badge.bg, color: s.badge.text }}
+      >
         {member.role}
       </span>
-      <span className="absolute bottom-1.5 right-2 text-[8px] opacity-0 group-hover:opacity-40 transition-opacity"
-            style={{ color: c.border }}>
-        Profil →
-      </span>
+
+      {/* Hover hint */}
+      <div
+        className="w-full py-2 text-[10px] font-semibold tracking-widest uppercase
+                   opacity-0 group-hover:opacity-100 transition-opacity duration-200
+                   border-t"
+        style={{
+          borderColor: `${s.photoBorder}30`,
+          color: s.photoBorder,
+          background: `${s.photoBorder}10`,
+        }}
+      >
+        Lihat Profil →
+      </div>
     </button>
   )
 }
 
 function ProfileModal({ member, onClose }: { member: Member; onClose: () => void }) {
   const Icon = TierIcon[member.tier]
-  const c = cardCfg[member.tier]
+  const s = tierStyle[member.tier]
   return (
     <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" onClick={onClose}>
-      <div className="absolute inset-0 bg-[#0f1f3d]/75 backdrop-blur-sm" />
+      <div className="absolute inset-0 bg-[#0f1f3d]/80 backdrop-blur-sm" />
       <div
-        className="relative bg-white max-w-2xl w-full shadow-2xl overflow-hidden rounded-sm flex"
-        style={{ animation: 'modalIn .22s ease-out both', minHeight: 340 }}
+        className="relative bg-white max-w-2xl w-full shadow-2xl overflow-hidden flex"
+        style={{ animation: 'modalIn .22s ease-out both', minHeight: 360 }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* LEFT — Photo panel */}
-        <div className="w-48 shrink-0 flex flex-col items-center justify-center py-8 px-4 gap-4"
-             style={{ background: c.bg }}>
-          <div className="w-32 h-40 overflow-hidden flex items-center justify-center"
-               style={{ border: `2px solid ${c.border}`, background: 'rgba(201,168,76,0.15)' }}>
-            {member.photo
-              ? <Image src={member.photo} alt={member.name} width={128} height={160} className="object-cover w-full h-full" />
-              : <Icon size={48} style={{ color: c.border }} strokeWidth={1.2} />
-            }
+        {/* LEFT — Photo */}
+        <div
+          className="w-52 shrink-0 flex flex-col items-center justify-center py-10 px-5 gap-5"
+          style={{ background: s.cardBg }}
+        >
+          <div
+            className="w-36 h-44 overflow-hidden flex items-center justify-center"
+            style={{ border: `3px solid ${s.photoBorder}`, background: 'rgba(201,168,76,0.1)' }}
+          >
+            {member.photo ? (
+              <Image
+                src={member.photo}
+                alt={member.name}
+                width={144}
+                height={176}
+                className="object-cover w-full h-full"
+              />
+            ) : (
+              <Icon size={52} style={{ color: s.photoBorder }} strokeWidth={1.1} />
+            )}
           </div>
           <div className="text-center">
-            <p className="font-heading font-bold text-white text-sm leading-tight mb-2">{member.name}</p>
-            <span className="inline-block text-[10px] font-bold px-2.5 py-1 rounded-sm"
-                  style={{ background: c.border, color: c.badgeText }}>
+            <p className={`font-heading font-bold text-sm leading-tight mb-2 ${s.nameCls}`}>
+              {member.name}
+            </p>
+            <span
+              className="inline-block text-[10px] font-bold px-3 py-1"
+              style={{ background: s.badge.bg, color: s.badge.text }}
+            >
               {member.role}
             </span>
           </div>
         </div>
 
-        {/* RIGHT — Details */}
+        {/* RIGHT — Info */}
         <div className="flex flex-col flex-1 overflow-y-auto">
-          {/* close btn */}
-          <button onClick={onClose} className="absolute top-3 right-3 text-gray-400 hover:text-navy transition-colors">
+          <button
+            onClick={onClose}
+            className="absolute top-3 right-3 text-gray-300 hover:text-gray-600 transition-colors"
+          >
             <X size={18} />
           </button>
 
-          <div className="px-7 pt-7 pb-4 flex-1">
-            <p className="text-gray-500 text-sm leading-relaxed mb-5">{member.description}</p>
+          <div className="px-8 pt-8 pb-4 flex-1">
+            <p className="text-gray-500 text-sm leading-relaxed mb-6">{member.description}</p>
             <div className="flex items-center gap-2 mb-3">
-              <span className="w-4 h-0.5 inline-block" style={{ background: '#c9a84c' }} />
-              <p className="font-heading font-bold text-sm" style={{ color: '#0f1f3d' }}>Tanggung Jawab</p>
+              <span className="w-5 h-0.5 inline-block" style={{ background: '#c9a84c' }} />
+              <p className="font-heading font-bold text-sm text-[#0f1f3d]">Tanggung Jawab</p>
             </div>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {member.responsibilities.map((r, i) => (
-                <li key={i} className="flex items-start gap-2.5 text-sm text-gray-500">
-                  <span className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0" style={{ background: '#c9a84c' }} />
+                <li key={i} className="flex items-start gap-3 text-sm text-gray-500">
+                  <span
+                    className="w-1.5 h-1.5 rounded-full mt-1.5 shrink-0"
+                    style={{ background: '#c9a84c' }}
+                  />
                   {r}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div className="px-7 pb-4 pt-3 text-right border-t border-gray-100">
-            <button onClick={onClose} className="text-xs text-gray-400 hover:text-navy transition-colors">Tutup ✕</button>
+          <div className="px-8 pb-5 pt-3 text-right border-t border-gray-100">
+            <button
+              onClick={onClose}
+              className="text-xs text-gray-400 hover:text-[#0f1f3d] transition-colors"
+            >
+              Tutup ✕
+            </button>
           </div>
         </div>
       </div>
@@ -202,12 +292,11 @@ export default function CompanyStructurePage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-[#f5f3ef] font-body">
+      <div className="min-h-screen bg-[#f0ede8] font-body">
 
         {/* Hero */}
-        <div className="bg-navy text-white pt-[94px] lg:pt-[134px] pb-14 px-6 relative overflow-hidden">
-          {/* decorative circles */}
-          <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full border border-gold/10" />
+        <div className="bg-navy text-white pt-[94px] lg:pt-[134px] pb-16 px-6 relative overflow-hidden">
+          <div className="absolute -top-10 -right-10 w-72 h-72 rounded-full border border-gold/10" />
           <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full border border-gold/10" />
           <div className="relative max-w-3xl mx-auto text-center">
             <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 px-4 py-1.5 mb-5">
@@ -222,77 +311,82 @@ export default function CompanyStructurePage() {
         </div>
 
         {/* ── Org Chart ── */}
-        <div className="py-16 px-4 overflow-x-auto overflow-y-visible">
-          <div className="org-tree flex flex-col items-center" style={{ minWidth: 560 }}>
+        <div className="py-20 px-6 overflow-x-auto">
+          <div className="org-wrap">
 
-            {/* ── Level 1: Komisaris ── */}
-            <div className="node-komisaris">
-              <OrgCard member={get('achmad')} onClick={() => setSelected(get('achmad'))} />
-            </div>
-
-            {/* ── Level 2: President + Penasihat ── */}
-            {/*
-              Layout:
-                  Komisaris
-                      |
-              ┌───────┼───────┐
-           Penasihat Presdir Penasihat
-                      |
-                 Dir.Teknis
-            */}
-            <div className="level2-wrapper">
-              {/* left advisory branch */}
-              <div className="advisor-branch left-branch">
-                <div className="h-line" />
-                <div className="v-drop" />
-                <OrgCard member={get('ferrial')} onClick={() => setSelected(get('ferrial'))} />
-              </div>
-
-              {/* center column: President + line down */}
-              <div className="center-col">
-                <div className="v-from-top" />
-                <OrgCard member={get('hammam')} onClick={() => setSelected(get('hammam'))} />
-                <div className="v-to-bottom" />
-              </div>
-
-              {/* right advisory branch */}
-              <div className="advisor-branch right-branch">
-                <div className="h-line" />
-                <div className="v-drop" />
-                <OrgCard member={get('hendri')} onClick={() => setSelected(get('hendri'))} />
+            {/* Row 1 — Komisaris */}
+            <div className="row1">
+              <div className="komisaris-node">
+                <OrgCard member={get('achmad')} onClick={() => setSelected(get('achmad'))} />
               </div>
             </div>
 
-            {/* ── Level 3: Direktur ── */}
-            <OrgCard member={get('rahmat')} onClick={() => setSelected(get('rahmat'))} />
+            {/* Connector: komisaris → row2 */}
+            <div className="v-connector" />
+
+            {/* Row 2 — Advisor | President | Advisor */}
+            <div className="row2">
+              {/* H-bar spanning full width */}
+              <div className="h-bar" />
+
+              <div className="row2-inner">
+                {/* Left advisor */}
+                <div className="advisor-col">
+                  <div className="v-drop-left" />
+                  <OrgCard member={get('ferrial')} onClick={() => setSelected(get('ferrial'))} />
+                </div>
+
+                {/* President center */}
+                <div className="president-col">
+                  <OrgCard member={get('hammam')} onClick={() => setSelected(get('hammam'))} />
+                </div>
+
+                {/* Right advisor */}
+                <div className="advisor-col">
+                  <div className="v-drop-right" />
+                  <OrgCard member={get('hendri')} onClick={() => setSelected(get('hendri'))} />
+                </div>
+              </div>
+            </div>
+
+            {/* Connector: president → row3 */}
+            <div className="v-connector center-only" />
+
+            {/* Row 3 — Director */}
+            <div className="row3">
+              <OrgCard member={get('rahmat')} onClick={() => setSelected(get('rahmat'))} />
+            </div>
 
           </div>
         </div>
 
         {/* Legend */}
-        <div className="flex flex-wrap justify-center gap-6 pb-8">
+        <div className="flex flex-wrap justify-center gap-8 pb-12">
           {[
             { label: 'Komisaris',          bg: '#1a2a4a' },
             { label: 'President Direktur', bg: '#0f1f3d' },
-            { label: 'Penasihat',          bg: '#ffffff', border: '1px solid #0f1f3d' },
+            { label: 'Penasihat',          bg: '#ffffff', border: '2px solid #0f1f3d' },
             { label: 'Direktur Teknis',    bg: '#1e3160' },
           ].map((l) => (
-            <div key={l.label} className="flex items-center gap-2">
-              <div className="w-3.5 h-3.5 rounded-sm" style={{ background: l.bg, border: l.border ?? 'none' }} />
+            <div key={l.label} className="flex items-center gap-2.5">
+              <div className="w-4 h-4 rounded-sm" style={{ background: l.bg, border: l.border ?? 'none' }} />
               <span className="text-xs text-gray-500 font-medium">{l.label}</span>
             </div>
           ))}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <div className="w-8 h-0 border-t-2 border-dashed border-gray-400" />
-            <span className="text-xs text-gray-500 font-medium">Hubungan Advisory</span>
+            <span className="text-xs text-gray-500 font-medium">Hubungan Penasihat</span>
           </div>
         </div>
 
         {/* Back */}
-        <div className="text-center py-10">
-          <Link href="/"
-            className="inline-flex items-center gap-2 border border-navy text-navy px-6 py-3
-                       text-sm font-medium hover:bg-navy hover:text-white transition-all duration-200">
+        <div className="text-center pb-16">
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 border-2 border-[#0f1f3d] text-[#0f1f3d]
+                       px-8 py-3 text-sm font-semibold hover:bg-[#0f1f3d] hover:text-white
+                       transition-all duration-200"
+          >
             <ArrowLeft size={16} /> Kembali ke Beranda
           </Link>
         </div>
@@ -301,93 +395,114 @@ export default function CompanyStructurePage() {
       {selected && <ProfileModal member={selected} onClose={() => setSelected(null)} />}
 
       <style jsx global>{`
-        /* ── GOLD COLOR ── */
-        .text-gold { color: #c9a84c; }
-
-        /* ── ORG CHART TREE ── */
-        .org-tree {
-          gap: 0;
+        /* ── ORG CARD ── */
+        .org-card {
+          width: 176px;
+          border-radius: 2px;
+          overflow: hidden;
+          box-shadow: 0 4px 20px rgba(15,31,61,0.15);
+          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          position: relative;
+          z-index: 10;
+        }
+        .org-card:hover {
+          transform: translateY(-6px) scale(1.04);
+          box-shadow: 0 16px 40px rgba(201,168,76,0.3), 0 4px 16px rgba(15,31,61,0.2);
         }
 
-        /* Komisaris node — add bottom connector */
-        .node-komisaris {
+        /* ── CHART WRAPPER ── */
+        .org-wrap {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          min-width: 700px;
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        /* Row 1 */
+        .row1 {
+          display: flex;
+          justify-content: center;
+        }
+        .komisaris-node {
           display: flex;
           flex-direction: column;
           align-items: center;
         }
-        .node-komisaris::after {
-          content: '';
+
+        /* Vertical connector (komisaris → row2 h-bar) */
+        .v-connector {
           width: 2px;
-          height: 36px;
+          height: 48px;
           background: #c9a84c;
         }
 
-        /* Level 2 row */
-        .level2-wrapper {
+        /* Row 2 */
+        .row2 {
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        /* Horizontal bar spanning advisors + president */
+        .h-bar {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 460px;
+          height: 2px;
+          background: #c9a84c;
+        }
+
+        .row2-inner {
           display: flex;
           align-items: flex-start;
           justify-content: center;
+          gap: 80px;
+          padding-top: 0;
         }
 
-        /* Center column */
-        .center-col {
+        /* Advisor column: v-drop then card */
+        .advisor-col {
           display: flex;
           flex-direction: column;
           align-items: center;
         }
-        .v-from-top {
+        .v-drop-left,
+        .v-drop-right {
           width: 2px;
-          height: 0;      /* already provided by node-komisaris::after */
+          height: 48px;
+          border-left: 2px dashed rgba(15,31,61,0.4);
         }
-        .v-to-bottom {
-          width: 2px;
-          height: 36px;
+
+        /* President sits right at the h-bar */
+        .president-col {
+          margin-top: 0;
+        }
+
+        /* Vertical connector from president down (center only) */
+        .v-connector.center-only {
           background: #c9a84c;
         }
 
-        /* Advisory branch (left & right) */
-        .advisor-branch {
+        /* Row 3 */
+        .row3 {
           display: flex;
-          flex-direction: column;
-          align-items: flex-end;
-          padding-top: 0;
-        }
-        .right-branch {
-          align-items: flex-start;
-        }
-
-        /* Horizontal dashed line connecting advisor to president */
-        .h-line {
-          height: 2px;
-          width: 56px;
-          border-top: 2px dashed rgba(15,31,61,0.35);
-          /* position it vertically at center of card avatar area */
-          margin-top: 62px;  /* aligns with center of card roughly */
-        }
-
-        /* Vertical drop from h-line to advisor card */
-        .v-drop {
-          display: none; /* not needed — card sits beside the h-line */
-        }
-
-        /* Re-layout: advisor cards sit beside president on the same row */
-        .advisor-branch {
-          flex-direction: row;
-          align-items: center;
-          padding-top: 0;
-        }
-        .left-branch {
-          flex-direction: row-reverse;
-        }
-        .h-line {
-          margin-top: 0;
+          justify-content: center;
         }
 
         /* Modal animation */
         @keyframes modalIn {
-          from { opacity: 0; transform: translateY(12px) scale(0.97); }
+          from { opacity: 0; transform: translateY(16px) scale(0.96); }
           to   { opacity: 1; transform: translateY(0) scale(1); }
         }
+
+        .text-gold { color: #c9a84c; }
+        .bg-gold   { background: #c9a84c; }
       `}</style>
     </>
   )
