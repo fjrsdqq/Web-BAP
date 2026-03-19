@@ -106,9 +106,9 @@ export default function CompanyProfilePage() {
                   <Target size={100} className="text-gold" />
                 </div>
                 <p className="font-heading text-xl md:text-2xl leading-relaxed text-white/90 italic relative z-10">
-                  "Menjadi perusahaan konstruksi berskala nasional yang unggul, terpercaya,
+                  &ldquo;Menjadi perusahaan konstruksi berskala nasional yang unggul, terpercaya,
                   dan inovatif, serta menjadi mitra utama dalam mewujudkan pembangunan
-                  infrastruktur dan properti yang berkualitas tinggi."
+                  infrastruktur dan properti yang berkualitas tinggi.&rdquo;
                 </p>
               </div>
             </div>
