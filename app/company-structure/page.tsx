@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { ArrowLeft, X, Building2, Wrench, Shield, Lightbulb } from 'lucide-react'
 import Navbar from '@/components/Navbar'
 
@@ -175,58 +175,63 @@ function OrgCard({
 }
 
 /* Zoom preview overlay shown on hover */
-function HoverPreview({ member, onClose, onClick }: { member: Member; onClose: () => void; onClick: () => void }) {
+function HoverPreview({ member, onEnter, onLeave, onClick }: {
+  member: Member; onEnter: () => void; onLeave: () => void; onClick: () => void
+}) {
   const s = tierStyle[member.tier]
   const Icon = TierIcon[member.tier]
 
   return (
-    <div
-      className="fixed inset-0 z-[150] flex items-center justify-center"
-      onMouseLeave={onClose}
-    >
-      {/* Blur backdrop */}
-      <div className="absolute inset-0 bg-[#0f1f3d]/60 backdrop-blur-md" onClick={onClose} />
+    <div className="fixed inset-0 z-[150] flex items-center justify-center">
+      {/* Blur backdrop — click closes */}
+      <div className="absolute inset-0 bg-[#0f1f3d]/65 backdrop-blur-md" onClick={onLeave} />
 
-      {/* Zoomed card */}
+      {/* Zoomed card — mouse enter cancels close timer, leave restarts it */}
       <div
         className="relative flex flex-col items-center text-center overflow-hidden cursor-pointer"
         style={{
           background: s.cardBg,
-          width: 320,
+          width: 300,
           borderRadius: 2,
-          boxShadow: `0 32px 80px rgba(0,0,0,0.5), 0 0 0 2px ${s.photoBorder}`,
-          animation: 'zoomIn .2s ease-out both',
+          boxShadow: `0 32px 80px rgba(0,0,0,0.55), 0 0 0 2px ${s.photoBorder}`,
+          animation: 'zoomIn .18s ease-out both',
         }}
+        onMouseEnter={onEnter}
+        onMouseLeave={onLeave}
         onClick={onClick}
       >
-        {/* Full-width portrait photo */}
+        {/* Portrait photo — object-contain so nothing is cropped */}
         <div
-          className="w-full overflow-hidden flex items-center justify-center"
+          className="w-full flex items-center justify-center"
           style={{
-            height: 280,
+            height: 300,
             borderBottom: `3px solid ${s.photoBorder}`,
-            background: 'rgba(201,168,76,0.08)',
+            background: member.tier === 'advisor'
+              ? 'rgba(15,31,61,0.06)'
+              : 'rgba(10,20,40,0.8)',
           }}
         >
           {member.photo ? (
-            <Image src={member.photo} alt={member.name} width={320} height={280} className="w-full h-full object-cover object-top" />
+            <Image
+              src={member.photo}
+              alt={member.name}
+              width={300}
+              height={300}
+              className="w-full h-full object-contain"
+            />
           ) : (
             <Icon size={80} style={{ color: s.photoBorder }} strokeWidth={1.0} />
           )}
         </div>
 
-        {/* Gold accent */}
-        <div className="w-10 h-0.5 mt-6 mb-3" style={{ background: s.photoBorder }} />
-        <p className={`font-heading font-bold text-xl leading-tight px-6 mb-3 ${s.nameCls}`}>{member.name}</p>
-        <span className="text-xs font-bold tracking-wide px-4 py-1.5 mb-4" style={{ background: s.badge.bg, color: s.badge.text }}>
+        <div className="w-10 h-0.5 mt-5 mb-3" style={{ background: s.photoBorder }} />
+        <p className={`font-heading font-bold text-lg leading-tight px-6 mb-2 ${s.nameCls}`}>{member.name}</p>
+        <span className="text-[11px] font-bold tracking-wide px-4 py-1.5 mb-4"
+              style={{ background: s.badge.bg, color: s.badge.text }}>
           {member.role}
         </span>
-
-        {/* Click hint */}
-        <div
-          className="w-full py-3 text-xs font-semibold tracking-widest uppercase border-t"
-          style={{ borderColor: `${s.photoBorder}30`, color: s.photoBorder, background: `${s.photoBorder}15` }}
-        >
+        <div className="w-full py-2.5 text-[10px] font-semibold tracking-widest uppercase border-t"
+             style={{ borderColor: `${s.photoBorder}30`, color: s.photoBorder, background: `${s.photoBorder}12` }}>
           Klik untuk lihat profil →
         </div>
       </div>
@@ -323,14 +328,20 @@ function ProfileModal({ member, onClose }: { member: Member; onClose: () => void
 
 export default function CompanyStructurePage() {
   const [selected, setSelected] = useState<Member | null>(null)
-  const [hovered, setHovered] = useState<Member | null>(null)
+  const [hovered, setHovered]   = useState<Member | null>(null)
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const get = (id: string) => members.find((m) => m.id === id)!
+
+  const openPreview  = (m: Member) => { if (closeTimer.current) clearTimeout(closeTimer.current); setHovered(m) }
+  const delayClose   = ()          => { closeTimer.current = setTimeout(() => setHovered(null), 120) }
+  const cancelClose  = ()          => { if (closeTimer.current) clearTimeout(closeTimer.current) }
+  const closePreview = ()          => { if (closeTimer.current) clearTimeout(closeTimer.current); setHovered(null) }
 
   const cardProps = (id: string) => ({
     member: get(id),
-    onHover: (m: Member) => setHovered(m),
-    onLeave: () => setHovered(null),
-    onClick: (m: Member) => { setHovered(null); setSelected(m) },
+    onHover: openPreview,
+    onLeave: delayClose,
+    onClick: (m: Member) => { closePreview(); setSelected(m) },
   })
 
   return (
@@ -429,8 +440,9 @@ export default function CompanyStructurePage() {
       {hovered && !selected && (
         <HoverPreview
           member={hovered}
-          onClose={() => setHovered(null)}
-          onClick={() => { setSelected(hovered); setHovered(null) }}
+          onEnter={cancelClose}
+          onLeave={closePreview}
+          onClick={() => { closePreview(); setSelected(hovered) }}
         />
       )}
       {selected && <ProfileModal member={selected} onClose={() => setSelected(null)} />}
