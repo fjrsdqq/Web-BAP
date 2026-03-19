@@ -299,10 +299,7 @@ export default function CompanyStructurePage() {
           <div className="absolute -top-10 -right-10 w-72 h-72 rounded-full border border-gold/10" />
           <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full border border-gold/10" />
           <div className="relative max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center gap-2 bg-gold/15 border border-gold/30 px-4 py-1.5 mb-5">
-              <Building2 size={13} className="text-gold" />
-              <span className="text-gold text-[11px] font-bold tracking-[0.2em] uppercase">Company Structure</span>
-            </div>
+
             <h1 className="font-heading text-4xl md:text-5xl font-bold mb-3">
               Struktur <span className="text-gold">Organisasi</span>
             </h1>

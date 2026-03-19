@@ -62,12 +62,6 @@ export default function CompanyValuesPage() {
       {/* Hero Banner — covers transparent navbar */}
       <div className="bg-navy text-white pt-[96px] lg:pt-[136px] pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-gold/20 border border-gold/30 px-4 py-1.5 mb-6">
-            <Star size={14} className="text-gold" />
-            <span className="text-gold text-xs font-semibold tracking-widest uppercase">
-              Company Values
-            </span>
-          </div>
           <h1 className="font-heading text-4xl md:text-5xl font-bold leading-tight mb-5">
             Nilai-Nilai <span className="text-gold">Kami</span>
           </h1>
