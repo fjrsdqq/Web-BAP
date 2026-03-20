@@ -49,9 +49,9 @@ export default function Footer() {
           <div className="lg:col-span-1">
             <div className="flex items-center mb-6">
               <Image
-                src="/images/BATAVIA_ASIA_PROJECT_2.jpeg"
+                src="/images/LOGO_WHITE.png"
                 alt="PT Batavia Asia Project"
-                width={200}
+                width={160}
                 height={80}
                 className="object-contain"
               />
