@@ -73,10 +73,7 @@ export default function CompanyProfilePage() {
                 priority
               />
               <div className="font-heading font-bold text-white tracking-[0.2em] text-3xl md:text-4xl leading-none">
-                PT. BATAVIA
-              </div>
-              <div className="font-heading font-bold text-gold tracking-[0.2em] text-3xl md:text-4xl leading-none mt-2">
-                ASIA PROJECT
+                PT. BATAVIA ASIA PROJECT
               </div>
             </div>
             <p className="text-white/55 text-base max-w-2xl mx-auto leading-relaxed">
