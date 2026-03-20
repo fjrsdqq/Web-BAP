@@ -62,30 +62,21 @@ export default function CompanyProfilePage() {
           <div className="absolute left-0 top-0 bottom-0 w-1 bg-gold" />
 
           <div className="relative max-w-4xl mx-auto text-center">
-            {/* Code-based logo — always crisp/HD at any screen size */}
-            <div className="flex items-center justify-center gap-6 mb-8">
+            {/* Code-based logo — centered, logo on top, text below */}
+            <div className="flex flex-col items-center mb-8">
               <Image
                 src="/images/LOGO_WHITE.png"
                 alt="PT Batavia Asia Project"
-                width={90}
-                height={90}
-                className="object-contain shrink-0"
+                width={130}
+                height={130}
+                className="object-contain mb-5"
                 priority
               />
-              <div className="text-left">
-                <div className="font-heading font-bold text-white tracking-[0.18em] text-3xl md:text-4xl leading-none">
-                  PT. BATAVIA
-                </div>
-                <div className="font-heading font-bold text-gold tracking-[0.18em] text-3xl md:text-4xl leading-none mt-1">
-                  ASIA PROJECT
-                </div>
-                <div className="mt-3 flex items-center gap-3">
-                  <div className="h-px bg-gold/50 flex-1" />
-                  <span className="font-body text-white/40 text-[10px] tracking-[0.3em] uppercase">
-                    Est. 2012 · Jakarta
-                  </span>
-                  <div className="h-px bg-gold/50 flex-1" />
-                </div>
+              <div className="font-heading font-bold text-white tracking-[0.2em] text-3xl md:text-4xl leading-none">
+                PT. BATAVIA
+              </div>
+              <div className="font-heading font-bold text-gold tracking-[0.2em] text-3xl md:text-4xl leading-none mt-2">
+                ASIA PROJECT
               </div>
             </div>
             <p className="text-white/55 text-base max-w-2xl mx-auto leading-relaxed">
