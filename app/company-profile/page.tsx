@@ -67,8 +67,8 @@ export default function CompanyProfilePage() {
               <Image
                 src="/images/LOGO_WHITE.png"
                 alt="PT Batavia Asia Project"
-                width={130}
-                height={130}
+                width={200}
+                height={200}
                 className="object-contain mb-5"
                 priority
               />
