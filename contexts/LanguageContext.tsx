@@ -9,10 +9,10 @@ interface LangCtx {
   setLang: (l: Lang) => void
 }
 
-const LanguageContext = createContext<LangCtx>({ lang: 'id', setLang: () => {} })
+const LanguageContext = createContext<LangCtx>({ lang: 'en', setLang: () => {} })
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLangState] = useState<Lang>('id')
+  const [lang, setLangState] = useState<Lang>('en')
 
   useEffect(() => {
     const saved = localStorage.getItem('bap_lang') as Lang | null
