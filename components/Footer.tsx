@@ -47,14 +47,22 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Column 1 — Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center mb-6">
+            <div className="flex items-center gap-3 mb-6">
               <Image
                 src="/images/LOGO_WHITE.png"
-                alt="PT Batavia Asia Project"
-                width={160}
-                height={80}
+                alt="Batavia Asia Project"
+                width={48}
+                height={48}
                 className="object-contain"
               />
+              <div className="leading-tight">
+                <div className="font-heading font-bold text-white tracking-wide">
+                  BATAVIA ASIA
+                </div>
+                <div className="font-body text-white/50 text-xs tracking-[0.15em] uppercase">
+                  Project
+                </div>
+              </div>
             </div>
 
             <p className="font-body text-white/55 text-sm leading-relaxed mb-6">
