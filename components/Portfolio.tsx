@@ -65,7 +65,7 @@ const portfolioItems: PortfolioItem[] = [
   {
     id: 2,
     title: 'Projek 4',
-    caption: 'Building Construction & Interior Works',
+    caption: 'Renovasi Ruang Kantor TEC di Pasific Place',
     location: 'Jakarta',
     image: '/images/portfolio/Projek 4/Porto 3.jpeg',
     detailImages: [
