@@ -31,23 +31,23 @@ const values = {
   id: [
     {
       letter: 'B', keyword: 'Brilliance', subtitle: 'Keunggulan & Inovasi', icon: Lightbulb,
-      description: 'Kami tidak sekadar membangun — kami menghadirkan solusi. Tim ahli kami selalu bekerja dengan kecerdasan dan inovasi untuk menghadirkan efisiensi di setiap tahap konstruksi, dari perencanaan hingga serah terima, memastikan hasil akhir yang melampaui ekspektasi.',
+      description: 'Kami tidak sekadar memasang kabel atau pipa; kami menghadirkan solusi MEP HVAC & Civil yang cerdas. Tim ahli kami mengedepankan inovasi teknis untuk menghasilkan efisiensi energi dan performa sistem yang melampaui ekspektasi, mulai dari fase desain hingga instalasi akhir.',
     },
     {
       letter: 'U', keyword: 'Unity', subtitle: 'Kolaborasi & Kerja Tim', icon: Users,
-      description: 'Keberhasilan sebuah proyek merupakan hasil kerja tim yang solid. Kami menjunjung tinggi semangat kolaborasi yang harmonis antara manajemen, tenaga ahli lapangan, vendor, sub-kontraktor, dan klien kami — memastikan setiap proyek berjalan lancar dan mencapai target.',
+      description: 'Keberhasilan sistem bangunan terletak pada sinergi. Kami menjunjung tinggi kolaborasi antara tim MEP, HVAC & Civil, tenaga konstruksi, dan desainer interior untuk memastikan seluruh elemen teknis selaras dengan estetika dan struktur bangunan, demi mencapai target proyek yang harmonis.',
     },
     {
       letter: 'I', keyword: 'Integrity', subtitle: 'Integritas & Transparansi', icon: ShieldCheck,
-      description: 'Kepercayaan Anda adalah aset terbesar kami. Kami menjalankan bisnis dengan tingkat kejujuran tertinggi, etika profesional yang ketat, dan transparansi penuh — dalam anggaran proyek, spesifikasi material, dan pelaporan progres lapangan. Tidak ada kompromi dalam hal kualitas dan kejujuran.',
+      description: 'Kepercayaan Anda adalah aset terbesar kami. Kami menjamin transparansi penuh dalam pemilihan material teknis, akurasi anggaran proyek, dan kejujuran dalam pelaporan progres. Tidak ada kompromi untuk kualitas komponen yang menjadi jantung keamanan gedung Anda.',
     },
     {
       letter: 'L', keyword: 'Loyalty', subtitle: 'Loyalitas terhadap Komitmen', icon: Heart,
-      description: 'Kami mendedikasikan diri sepenuhnya pada setiap kesepakatan yang dibuat. Loyalitas kami tercermin melalui penyelesaian proyek tepat waktu dan komitmen yang tak tergoyahkan untuk menghadirkan nilai tambah bagi investasi properti dan infrastruktur Anda.',
+      description: 'Loyalitas kami terwujud melalui komitmen jangka panjang. Selain menyelesaikan proyek tepat waktu, kami mengabdikan diri pada layanan perawatan dan perbaikan (maintenance) guna menjaga investasi properti Anda tetap dalam kondisi prima dan beroperasi tanpa kendala.',
     },
     {
       letter: 'D', keyword: 'Dedication', subtitle: 'Dedikasi terhadap Kualitas & Keselamatan', icon: Star,
-      description: 'Kami menempatkan standar kualitas dan Keselamatan dan Kesehatan Kerja (K3) di atas segalanya. Dedikasi kami adalah menciptakan lingkungan kerja yang aman (Zero Accident) dan memastikan setiap detail bangunan berdiri kokoh, fungsional, dan tahan lama.',
+      description: 'Kami menempatkan standar Keselamatan dan Kesehatan Kerja (K3) di atas segalanya, terutama dalam pekerjaan sistem elektrikal dan mekanikal yang kompleks. Dedikasi kami adalah menciptakan lingkungan yang aman (Zero Accident) dan memastikan setiap instalasi berdiri kokoh serta fungsional untuk jangka panjang.',
     },
   ],
 }
@@ -81,8 +81,8 @@ export default function CompanyValuesPage() {
         <div className="bg-white border-l-4 border-gold p-8 mb-14 shadow-sm">
           <p className="text-gray-600 leading-relaxed text-base">
             {t(
-              'At PT. BATAVIA ASIA PROJECT, we believe that great construction is not only built on foundations of concrete and steel, but on a foundation of strong values. As a trusted partner in delivering national-scale infrastructure and property development, every step we take is guided by the principles of integrity, quality, and safety.',
-              'Di PT. BATAVIA ASIA PROJECT, kami percaya bahwa konstruksi yang hebat tidak hanya dibangun di atas fondasi beton dan baja, melainkan di atas fondasi nilai-nilai yang kuat. Sebagai mitra terpercaya dalam menghadirkan infrastruktur dan pengembangan properti skala nasional, setiap langkah kami dipandu oleh prinsip integritas, kualitas, dan keselamatan.'
+              'At PT Batavia Asia Project, we believe that a building truly comes to life only when it is supported by reliable internal systems. Our primary focus is to deliver intelligent and efficient MEP (Mechanical, Electrical, & Plumbing), HVAC, and Civil solutions as the backbone of every infrastructure As a trusted partner, we also provide comprehensive services in maintenance and repair, construction, as well as interior and exterior design to ensure that every project functions optimally, remains aesthetically pleasing, and is built to last. Every step we take is guided by the B.U.I.L.D philosophy.',
+              'Di PT BATAVIA ASIA PROJECT, kami percaya bahwa sebuah bangunan hanya akan hidup jika didukung oleh sistem internal yang andal. Fokus utama kami adalah menghadirkan solusi MEP (Mechanical, Electrical, & Plumbing) HVAC & Civil yang cerdas dan efisien, sebagai urat nadi dari setiap infrastruktur. Sebagai mitra terpercaya, kami juga menyediakan layanan komprehensif dalam perawatan & perbaikan (maintenance), konstruksi, serta desain interior dan eksterior untuk memastikan setiap proyek berfungsi maksimal, estetis, dan tahan lama. Setiap langkah kami dipandu oleh filosofi B.U.I.L.D.'
             )}
           </p>
           <p className="text-gray-600 leading-relaxed text-base mt-4">
@@ -140,19 +140,19 @@ export default function CompanyValuesPage() {
         {/* Closing Statement */}
         <div className="mt-14 bg-navy text-white p-10 text-center">
           <h3 className="font-heading font-bold text-2xl mb-4">
-            {t('Building the Future', 'Membangun Masa Depan')}{' '}
+            {t('Building the Future', 'Membangun Sistem Masa Depan Bersama')}{' '}
             <span className="text-gold">{t('Together', 'Bersama')}</span>
           </h3>
           <p className="text-white/70 leading-relaxed text-sm max-w-2xl mx-auto">
             {t(
               'For us, every project is a trust. The B.U.I.L.D philosophy ensures that PT. BATAVIA ASIA PROJECT will always be the contractor you can rely on — today, tomorrow, and in the future.',
-              'Bagi kami, setiap proyek adalah sebuah kepercayaan. Filosofi B.U.I.L.D memastikan bahwa PT. BATAVIA ASIA PROJECT akan selalu menjadi kontraktor yang dapat Anda andalkan — hari ini, esok, dan di masa depan.'
+              'Bagi kami, setiap proyek adalah sebuah kepercayaan untuk membangun infrastruktur yang berfungsi sempurna. Filosofi B.U.I.L.D memastikan bahwa PT BATAVIA ASIA PROJECT akan selalu menjadi mitra MEP, HVAC & Civil dan general contractor yang dapat Anda andalkan — hari ini, esok, dan di masa depan'
             )}
           </p>
           <p className="text-gold font-heading font-semibold text-lg mt-6">
             {t(
               'Let us bring your construction vision to life together.',
-              'Mari kita wujudkan visi konstruksi Anda bersama-sama.'
+              'Mari kita wujudkan visi teknis dan konstruksi Anda bersama-sama'
             )}
           </p>
           <div className="mt-8 pt-6 border-t border-white/10">
