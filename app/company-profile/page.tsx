@@ -27,21 +27,21 @@ const data = {
   },
   id: {
     missions: [
-      { title: 'Kualitas & Ketepatan Waktu', desc: 'Menyediakan layanan konstruksi bangunan dan sipil dengan standar pengerjaan tertinggi, efisiensi operasional, dan serah terima proyek tepat waktu.' },
-      { title: 'Kesehatan, Keselamatan & Lingkungan (K3L)', desc: 'Menerapkan standar K3L yang ketat di setiap proyek untuk menciptakan lingkungan kerja yang aman dan mencapai Zero Accident di semua lokasi konstruksi.' },
-      { title: 'Tata Kelola Profesional', desc: 'Memimpin dengan manajemen proyek profesional, transparan, dan berintegritas tinggi untuk menjaga kepercayaan klien dan kelancaran operasional perusahaan.' },
-      { title: 'Kepuasan Klien', desc: 'Membangun kemitraan strategis jangka panjang dengan klien, vendor, dan sub-kontraktor berdasarkan manfaat bersama dan komunikasi proaktif.' },
-      { title: 'Inovasi Berkelanjutan', desc: 'Terus beradaptasi dengan kemajuan teknologi, material, dan metode konstruksi modern untuk menghadirkan solusi yang paling efektif dan bernilai tambah.' },
+      { title: 'Kualitas & Ketepatan Waktu', desc: 'Menyediakan layanan instalasi MEP HVAC & Civil dan pengerjaan konstruksi dengan standar teknis tertinggi, mengutamakan efisiensi energi, serta penyerahan proyek tepat waktu.' },
+      { title: 'Kesehatan, Keselamatan & Lingkungan (K3L)', desc: 'Menerapkan standar keselamatan kerja yang ketat, terutama pada risiko pengerjaan elektrikal dan mekanikal, untuk menjamin keamanan operasional dan mencapai Zero Accident.' },
+      { title: 'Tata Kelola & Kepuasan Client', desc: 'Membangun kepercayaan melalui manajemen proyek yang transparan, jujur, dan komunikasi proaktif guna memastikan seluruh sistem bangunan berfungsi optimal sesuai kebutuhan klien' },
+      { title: 'Solusi Terintegrasi & Perawatan', desc: 'Menghadirkan layanan pendamping yang komprehensif mulai dari desain interior-eksterior hingga manajemen perawatan (maintenance) berkala guna menjaga aset klien tetap prima.' },
+      { title: 'Inovasi Teknologi', desc: 'Terus mengadopsi teknologi terbaru dalam sistem MEP HVAC & Civil dan metode konstruksi modern untuk menghasilkan solusi yang paling efektif, aman, dan bernilai tambah' },
     ],
     buildValues: [
-      { letter: 'B', word: 'Brilliance', desc: 'Bekerja dengan kecerdasan dan menghadirkan hasil luar biasa di setiap proyek yang dikerjakan.' },
-      { letter: 'U', word: 'Unity', desc: 'Mengutamakan kerja tim yang solid antara manajemen dan tenaga ahli lapangan untuk mencapai tujuan bersama.' },
-      { letter: 'I', word: 'Integrity', desc: 'Menjunjung tinggi kejujuran dan etika bisnis dalam setiap kontrak dan hubungan profesional.' },
-      { letter: 'L', word: 'Loyalty', desc: 'Berkomitmen penuh pada setiap perjanjian dan selalu mengutamakan kepuasan klien.' },
-      { letter: 'D', word: 'Dedication', desc: 'Berdedikasi menyelesaikan setiap proyek sesuai anggaran dan spesifikasi teknis yang ditetapkan.' },
+      { letter: 'B', word: 'Brilliance', desc: 'Bekerja dengan kecerdasan dalam merancang sistem MEP yang inovatif dan solusi konstruksi yang efisien.' },
+      { letter: 'U', word: 'Unity', desc: 'Mengutamakan kolaborasi solid antara tim ahli MEP HVAC & Civil, konstruksi, dan desainer untuk mencapai tujuan proyek yang harmonis.' },
+      { letter: 'I', word: 'Integrity', desc: 'Menjunjung tinggi transparansi dalam penggunaan material teknis, anggaran, dan etika bisnis di setiap kontrak' },
+      { letter: 'L', word: 'Loyalty', desc: 'Berkomitmen penuh pada layanan purna jual dan perawatan jangka panjang demi kepuasan serta keberlanjutan investasi klien.' },
+      { letter: 'D', word: 'Dedication', desc: 'Berdedikasi menyelesaikan setiap proyek sesuai spesifikasi teknis dan standar keamanan tertinggi yang telah ditetapkan.' },
     ],
-    vision: 'Menjadi perusahaan konstruksi yang diakui secara nasional, unggul, terpercaya, dan inovatif — sebagai mitra utama dalam menghadirkan infrastruktur dan pengembangan properti berkualitas tinggi.',
-    heroSub: 'Kontraktor dan developer profesional yang berkomitmen menghadirkan konstruksi berkualitas tinggi dengan integritas dan inovasi di setiap proyeknya.',
+    vision: 'Menjadi perusahaan penyedia solusi MEP (Mechanical, Electrical, Plumbing) HVAC & Civil dan kontraktor umum terkemuka yang diakui secara nasional dalam menghadirkan sistem bangunan cerdas, perawatan yang andal, serta ruang fungsional berkualitas tinggi.',
+    heroSub: 'Penyedia Solusi MEP, HVAC & Civil Terpadu & Kontraktor Profesional Berkomitmen menghadirkan sistem bangunan andal, perawatan berkelanjutan, serta desain ruang berkualitas tinggi dengan integritas dan inovasi.',
   },
 }
 

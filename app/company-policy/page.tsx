@@ -51,38 +51,38 @@ const policies = {
       number: '1',
       title: 'Kebijakan Mutu',
       items: [
-        'Kami berdedikasi menghadirkan hasil konstruksi yang memenuhi — bahkan melampaui — ekspektasi klien dan spesifikasi teknis yang telah disepakati.',
-        'Menerapkan standar Kontrol Kualitas yang ketat di setiap fase proyek, mulai dari pemilihan material hingga tahap serah terima akhir.',
-        'Melakukan evaluasi dan inovasi metode kerja secara berkala untuk meningkatkan efisiensi dan keandalan struktur.',
+        'Kami berdedikasi menghadirkan sistem MEP HVAC & Civil dan infrastruktur yang memenuhi — bahkan melampaui — ekspektasi klien serta spesifikasi teknis yang telah disepakati',
+        'Menerapkan standar Kontrol Kualitas yang ketat di setiap fase, mulai dari pemilihan komponen teknis (kabel, pipa, perangkat mekanikal) hingga tahap uji fungsi (commissioning test) sebelum serah terima',
+        'Melakukan evaluasi berkala pada sistem yang telah terpasang melalui layanan perawatan dan perbaikan untuk memastikan efisiensi energi dan keandalan sistem jangka panjang',
       ],
     },
     {
       number: '2',
       title: 'Kebijakan Kesehatan, Keselamatan & Lingkungan (K3L)',
       items: [
-        'Jiwa dan kesehatan setiap pekerja adalah prioritas utama kami yang tidak dapat dikompromikan. Kami menargetkan Zero Accident di setiap lokasi proyek.',
-        'Menyediakan lingkungan kerja yang aman dan sehat bagi seluruh pekerja, staf, dan pihak ketiga yang berada di area konstruksi.',
-        'Mewajibkan penggunaan Alat Pelindung Diri (APD) konstruksi standar dan memastikan seluruh personel memahami prosedur K3.',
-        'Mengidentifikasi, mengendalikan, dan meminimalkan seluruh potensi risiko bahaya di lokasi kerja.',
+        'Jiwa dan kesehatan setiap pekerja adalah prioritas utama. Kami menerapkan protokol keselamatan khusus untuk pekerjaan berisiko tinggi seperti instalasi elektrikal, mekanikal, dan konstruksi fisik.',
+        'Menyediakan lingkungan kerja yang aman dan sehat bagi seluruh personel, dengan target Zero Accident di setiap lokasi proyek dan area perawatan',
+        'Mewajibkan penggunaan Alat Pelindung Diri (APD) standar teknis dan memastikan seluruh personel memahami prosedur keselamatan kerja pada sistem kelistrikan dan perpipaan',
+        'Mengidentifikasi dan meminimalkan potensi risiko bahaya teknis di lokasi kerja secara proaktif.',
       ],
     },
     {
       number: '3',
       title: 'Kebijakan Lingkungan Hidup',
       items: [
-        'Kami bertanggung jawab untuk meminimalkan dampak negatif kegiatan konstruksi terhadap lingkungan sekitar.',
-        'Mengelola limbah konstruksi (puing, sisa material, limbah cair) secara bertanggung jawab dan sesuai peraturan lingkungan yang berlaku.',
-        'Mengoptimalkan penggunaan sumber daya alam dan energi secara efisien di seluruh area operasional perusahaan.',
+        'Kami bertanggung jawab untuk meminimalkan dampak negatif kegiatan MEP HVAC & Civil dan konstruksi terhadap lingkungan sekitar',
+        'Mengoptimalkan penggunaan sumber daya alam dan energi melalui desain sistem MEP HVAC & Civil yang efisien dan ramah lingkungan (energy saving).',
+        'Mengelola limbah teknis, sisa material konstruksi, dan limbah cair secara bertanggung jawab sesuai dengan peraturan lingkungan yang berlaku',
       ],
     },
     {
       number: '4',
       title: 'Kebijakan Tata Kelola Perusahaan yang Baik & Etika Bisnis',
       items: [
-        'PT. BATAVIA ASIA PROJECT menjalankan bisnis dengan prinsip transparansi, akuntabilitas, dan integritas penuh.',
-        'Zero Tolerance Korupsi: Kami secara tegas melarang segala bentuk suap, gratifikasi, pungutan liar, atau kickback kepada dan dari pihak manapun — termasuk vendor, sub-kontraktor, dan klien.',
-        'Benturan Kepentingan: Semua keputusan perusahaan — dari pengadaan hingga penandatanganan kontrak — dibuat secara objektif oleh manajemen pusat untuk melindungi kepentingan klien dan aset perusahaan.',
-        'Menjaga kerahasiaan seluruh data proyek dan informasi strategis milik klien kami.',
+        'PT. BATAVIA ASIA PROJECT menjalankan bisnis dengan prinsip transparansi, akuntabilitas, dan integritas penuh, terutama dalam penentuan spesifikasi material teknik',
+        'Zero Tolerance Korupsi: Kami melarang segala bentuk suap, gratifikasi, atau kickback dalam pengadaan material MEP HVAC & Civil maupun jasa konstruksi',
+        'Benturan Kepentingan: Menjamin setiap keputusan perusahaan diambil secara objektif untuk melindungi kepentingan klien dan aset perusahaan',
+        '•	Menjaga kerahasiaan data proyek, skema sistem bangunan, dan informasi strategis milik klien kami.',
       ],
     },
   ],
@@ -118,7 +118,7 @@ export default function CompanyPolicyPage() {
           <p className="text-gray-600 leading-relaxed text-base">
             {t(
               'At PT. BATAVIA ASIA PROJECT, we believe that a successful construction masterpiece is not only measured by the grandeur of the final result, but also by how the building process is carried out. We are fully committed to applying the highest operational standards in every project we handle.',
-              'Di PT. BATAVIA ASIA PROJECT, kami percaya bahwa sebuah mahakarya konstruksi yang sukses tidak hanya diukur dari kemegahan hasil akhirnya, tetapi juga dari bagaimana proses pembangunan dilaksanakan. Kami berkomitmen penuh untuk menerapkan standar operasional tertinggi di setiap proyek yang kami tangani.'
+              'Di PT. BATAVIA ASIA PROJECT, kami percaya bahwa keberhasilan sebuah bangunan tidak hanya dinilai dari kemegahan fisiknya, tetapi dari keandalan sistem internal yang menggerakkannya. Kami berkomitmen penuh untuk menerapkan standar operasional tertinggi pada setiap instalasi MEP HVAC & Civil, layanan perawatan, serta pengerjaan konstruksi dan desain yang kami tangani.'
             )}
           </p>
           <p className="text-gray-600 leading-relaxed text-base mt-4">
@@ -161,7 +161,7 @@ export default function CompanyPolicyPage() {
           <p className="text-white/70 leading-relaxed text-sm max-w-2xl mx-auto">
             {t(
               'This policy is fully supported by the Senior Management of PT. BATAVIA ASIA PROJECT and will continue to be communicated, monitored, and refined in line with the company\'s growth and government regulations.',
-              'Kebijakan ini sepenuhnya didukung oleh Manajemen Senior PT. BATAVIA ASIA PROJECT dan akan terus dikomunikasikan, dipantau, dan disempurnakan seiring pertumbuhan perusahaan dan peraturan pemerintah.'
+              'Kebijakan ini sepenuhnya didukung oleh Manajemen Senior PT. BATAVIA ASIA PROJECT dan akan terus dikomunikasikan, dipantau, dan disempurnakan seiring perkembangan teknologi MEP HVAC & Civil serta peraturan pemerintah.'
             )}
           </p>
           <div className="mt-6 pt-6 border-t border-white/10">
