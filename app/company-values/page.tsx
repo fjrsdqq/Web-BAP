@@ -82,8 +82,9 @@ export default function CompanyValuesPage() {
           <p className="text-gray-600 leading-relaxed text-base">
             {t(
               'At PT Batavia Asia Project, we believe that a building truly comes to life only when it is supported by reliable internal systems. Our primary focus is to deliver intelligent and efficient MEP (Mechanical, Electrical, & Plumbing), HVAC, and Civil solutions as the backbone of every infrastructure As a trusted partner, we also provide comprehensive services in maintenance and repair, construction, as well as interior and exterior design to ensure that every project functions optimally, remains aesthetically pleasing, and is built to last. Every step we take is guided by the B.U.I.L.D philosophy.',
-              'Di PT BATAVIA ASIA PROJECT, kami percaya bahwa sebuah bangunan hanya akan hidup jika didukung oleh sistem internal yang andal. Fokus utama kami adalah menghadirkan solusi MEP (Mechanical, Electrical, & Plumbing) HVAC & Civil yang cerdas dan efisien, sebagai urat nadi dari setiap infrastruktur Sebagai mitra terpercaya, kami juga menyediakan layanan komprehensif dalam perawatan & perbaikan (maintenance), konstruksi, serta desain interior dan eksterior untuk memastikan setiap proyek berfungsi maksimal, estetis, dan tahan lama. Setiap langkah kami dipandu oleh filosofi B.U.I.L.D'
+              'Di PT BATAVIA ASIA PROJECT, kami percaya bahwa sebuah bangunan hanya akan hidup jika didukung oleh sistem internal yang andal. Fokus utama kami adalah menghadirkan solusi MEP (Mechanical, Electrical, & Plumbing) HVAC & Civil yang cerdas dan efisien, sebagai urat nadi dari setiap infrastruktur Sebagai mitra terpercaya, kami juga menyediakan layanan komprehensif dalam perawatan & perbaikan (maintenance), konstruksi, serta desain interior dan eksterior untuk memastikan setiap proyek berfungsi maksimal, estetis, dan tahan lama. Setiap langkah kami dipandu oleh filosofi'
             )}
+            <span className="font-bold text-navy">B.U.I.L.D</span>
           </p>
           <p className="text-gray-600 leading-relaxed text-base mt-4">
             {t(
